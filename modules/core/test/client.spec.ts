@@ -29,7 +29,11 @@ describe('Client', () => {
       });
     });
     afterEach((done) => {
-      server.close(done);
+      server.close(() => {
+        setTimeout(() => {
+          done();
+        }, 100);
+      });
     });
     it('should be true if the client is currently connected.', (done) => {
       const client = new Client(mockAccountInfo);
@@ -54,10 +58,18 @@ describe('Client', () => {
   describe('#connect()', () => {
     const server = net.createServer();
     beforeEach((done) => {
-      server.listen(2050, '0.0.0.0', done);
+      server.listen(2050, '0.0.0.0', () => {
+        setTimeout(() => {
+          done();
+        }, 100);
+      });
     });
     afterEach((done) => {
-      server.close(done);
+      server.close(() => {
+        setTimeout(() => {
+          done();
+        }, 100);
+      });
     });
     it('should throw a TypeError for invalid inputs.', () => {
       const client = new Client(mockAccountInfo);
@@ -114,10 +126,18 @@ describe('Client', () => {
   describe('#disconnect()', () => {
     const server = net.createServer();
     beforeEach((done) => {
-      server.listen(2050, '0.0.0.0', done);
+      server.listen(2050, '0.0.0.0', () => {
+        setTimeout(() => {
+          done();
+        }, 100);
+      });
     });
     afterEach((done) => {
-      server.close(done);
+      server.close(() => {
+        setTimeout(() => {
+          done();
+        }, 100);
+      });
     });
     it('should disconnect the client if it is currently connected.', (done) => {
       const client = new Client(mockAccountInfo);
