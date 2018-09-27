@@ -6,6 +6,8 @@ The module also provides implementations for almost all packets used by RotMG. T
 
 ## Install
 
+[![npm version](https://badge.fury.io/js/%40n2%2Fnet.svg)](https://badge.fury.io/js/%40n2%2Fnet)
+
 ```bash
 npm install @n2/net
 ```

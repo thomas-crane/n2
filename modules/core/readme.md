@@ -4,6 +4,8 @@ The core module provides a rich set of utilities which can be used to build func
 
 ## Install
 
+[![npm version](https://badge.fury.io/js/%40n2%2Fcore.svg)](https://badge.fury.io/js/%40n2%2Fcore)
+
 ```bash
 npm install @n2/core
 ```

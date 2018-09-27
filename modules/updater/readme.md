@@ -4,6 +4,8 @@ The updater module can be used to download the latest packet ids and assets from
 
 ## Install
 
+[![npm version](https://badge.fury.io/js/%40n2%2Fupdater.svg)](https://badge.fury.io/js/%40n2%2Fupdater)
+
 ```bash
 npm install @n2/updater
 ```

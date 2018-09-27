@@ -5,6 +5,8 @@ Most of the interfaces represent entities from RotMG, however some are used to r
 
 ## Install
 
+[![npm version](https://badge.fury.io/js/%40n2%2Fcommon.svg)](https://badge.fury.io/js/%40n2%2Fcommon)
+
 ```bash
 npm install @n2/common
 ```
