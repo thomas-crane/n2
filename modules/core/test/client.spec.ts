@@ -51,7 +51,9 @@ describe('Client', () => {
         done();
       });
       client.io.socket.connect(2050, '0.0.0.0', () => {
-        client.io.socket.destroy();
+        setTimeout(() => {
+          client.io.socket.destroy();
+        }, 500);
       });
     });
   });
