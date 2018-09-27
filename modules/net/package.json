@@ -1,0 +1,26 @@
+{
+  "name": "@n2/net",
+  "version": "0.1.0",
+  "description": "The networking module for n2",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "index": "tsai --path src"
+  },
+  "keywords": [
+    "typescript",
+    "rotmg",
+    "n2"
+  ],
+  "author": "tcrane",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^10.9.4",
+    "@types/node-rsa": "^0.4.3",
+    "tsai": "^2.1.0"
+  },
+  "dependencies": {
+    "@n2/common": "file:../common",
+    "node-rsa": "^1.0.1"
+  }
+}
