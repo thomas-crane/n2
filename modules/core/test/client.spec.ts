@@ -25,14 +25,14 @@ describe('Client', () => {
       server.listen(2050, '0.0.0.0', () => {
         setTimeout(() => {
           done();
-        }, 100);
+        }, 500);
       });
     });
     afterEach((done) => {
       server.close(() => {
         setTimeout(() => {
           done();
-        }, 100);
+        }, 500);
       });
     });
     it('should be true if the client is currently connected.', (done) => {
@@ -61,14 +61,14 @@ describe('Client', () => {
       server.listen(2050, '0.0.0.0', () => {
         setTimeout(() => {
           done();
-        }, 100);
+        }, 500);
       });
     });
     afterEach((done) => {
       server.close(() => {
         setTimeout(() => {
           done();
-        }, 100);
+        }, 500);
       });
     });
     it('should throw a TypeError for invalid inputs.', () => {
@@ -129,14 +129,14 @@ describe('Client', () => {
       server.listen(2050, '0.0.0.0', () => {
         setTimeout(() => {
           done();
-        }, 100);
+        }, 500);
       });
     });
     afterEach((done) => {
       server.close(() => {
         setTimeout(() => {
           done();
-        }, 100);
+        }, 500);
       });
     });
     it('should disconnect the client if it is currently connected.', (done) => {
