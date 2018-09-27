@@ -23,45 +23,45 @@ describe('Client', () => {
     const server = net.createServer();
     beforeEach((done) => {
       server.listen(2050, '0.0.0.0', () => {
-        setTimeout(() => {
-          done();
-        }, 100);
+        done();
       });
     });
     afterEach((done) => {
       server.close(() => {
-        setTimeout(() => {
-          done();
-        }, 100);
+        done();
       });
     });
     it('should be true if the client is currently connected.', (done) => {
       const client = new Client(mockAccountInfo);
       client.io.socket.once('connect', () => {
         expect(client.connected).to.equal(true, 'Incorrect value for connected getter.');
+        client.io.socket.destroy();
         done();
       });
       client.io.socket.connect(2050, '0.0.0.0');
     });
-    it('should be false if the client is not connected.', () => {
+    it('should be false if the client is not connected.', (done) => {
       const client = new Client(mockAccountInfo);
       expect(client.connected).to.equal(false, 'Incorrect initial value for connected getter.');
+      client.io.socket.once('close', () => {
+        expect(client.connected).to.equal(false, 'Incorrect value for connected getter.');
+        done();
+      });
+      client.io.socket.connect(2050, '0.0.0.0', () => {
+        client.io.socket.destroy();
+      });
     });
   });
   describe('#connect()', () => {
     const server = net.createServer();
     beforeEach((done) => {
       server.listen(2050, '0.0.0.0', () => {
-        setTimeout(() => {
-          done();
-        }, 100);
+        done();
       });
     });
     afterEach((done) => {
       server.close(() => {
-        setTimeout(() => {
-          done();
-        }, 100);
+        done();
       });
     });
     it('should throw a TypeError for invalid inputs.', () => {
@@ -120,16 +120,12 @@ describe('Client', () => {
     const server = net.createServer();
     beforeEach((done) => {
       server.listen(2050, '0.0.0.0', () => {
-        setTimeout(() => {
-          done();
-        }, 100);
+        done();
       });
     });
     afterEach((done) => {
       server.close(() => {
-        setTimeout(() => {
-          done();
-        }, 100);
+        done();
       });
     });
     it('should disconnect the client if it is currently connected.', (done) => {
