@@ -25,14 +25,14 @@ describe('Client', () => {
       server.listen(2050, '0.0.0.0', () => {
         setTimeout(() => {
           done();
-        }, 500);
+        }, 100);
       });
     });
     afterEach((done) => {
       server.close(() => {
         setTimeout(() => {
           done();
-        }, 500);
+        }, 100);
       });
     });
     it('should be true if the client is currently connected.', (done) => {
@@ -43,18 +43,9 @@ describe('Client', () => {
       });
       client.io.socket.connect(2050, '0.0.0.0');
     });
-    it('should be false if the client is not connected.', (done) => {
+    it('should be false if the client is not connected.', () => {
       const client = new Client(mockAccountInfo);
       expect(client.connected).to.equal(false, 'Incorrect initial value for connected getter.');
-      client.io.socket.once('close', () => {
-        expect(client.connected).to.equal(false, 'Incorrect value for connected getter.');
-        done();
-      });
-      client.io.socket.connect(2050, '0.0.0.0', () => {
-        setTimeout(() => {
-          client.io.socket.destroy();
-        }, 500);
-      });
     });
   });
   describe('#connect()', () => {
@@ -63,14 +54,14 @@ describe('Client', () => {
       server.listen(2050, '0.0.0.0', () => {
         setTimeout(() => {
           done();
-        }, 500);
+        }, 100);
       });
     });
     afterEach((done) => {
       server.close(() => {
         setTimeout(() => {
           done();
-        }, 500);
+        }, 100);
       });
     });
     it('should throw a TypeError for invalid inputs.', () => {
@@ -131,14 +122,14 @@ describe('Client', () => {
       server.listen(2050, '0.0.0.0', () => {
         setTimeout(() => {
           done();
-        }, 500);
+        }, 100);
       });
     });
     afterEach((done) => {
       server.close(() => {
         setTimeout(() => {
           done();
-        }, 500);
+        }, 100);
       });
     });
     it('should disconnect the client if it is currently connected.', (done) => {
