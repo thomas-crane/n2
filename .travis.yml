@@ -6,4 +6,4 @@ install:
 before_script:
   - npm run compile
 script:
-  - npm test
+  - sudo $(type -P npm) test
