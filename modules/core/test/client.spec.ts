@@ -22,17 +22,22 @@ describe('Client', () => {
   describe('#connected', () => {
     const server = net.createServer();
     beforeEach((done) => {
-      server.listen(2050, '0.0.0.0', done);
+      server.listen(2050, '0.0.0.0', () => {
+        setTimeout(() => {
+          done();
+        }, 100);
+      });
     });
     afterEach((done) => {
       server.close(done);
     });
     it('should be true if the client is currently connected.', (done) => {
       const client = new Client(mockAccountInfo);
-      client.io.socket.connect(2050, '0.0.0.0', () => {
+      client.io.socket.once('connect', () => {
         expect(client.connected).to.equal(true, 'Incorrect value for connected getter.');
         done();
       });
+      client.io.socket.connect(2050, '0.0.0.0');
     });
     it('should be false if the client is not connected.', (done) => {
       const client = new Client(mockAccountInfo);
