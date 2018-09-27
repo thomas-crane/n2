@@ -2,6 +2,8 @@
 
 A collection of modules for building clientless applications for Realm of the Mad God.
 
+[![Build Status](https://travis-ci.org/thomas-crane/n2.svg?branch=master)](https://travis-ci.org/thomas-crane/n2)
+
 ## Contents
 
 + [Foreword](#foreword)
