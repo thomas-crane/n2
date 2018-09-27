@@ -1,0 +1,25 @@
+{
+  "name": "@n2/core",
+  "version": "0.1.0",
+  "description": "The core module for n2",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "index": "tsai --path src"
+  },
+  "keywords": [
+    "typescript",
+    "rotmg",
+    "n2"
+  ],
+  "author": "tcrane",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^10.9.4",
+    "tsai": "^2.1.0"
+  },
+  "dependencies": {
+    "@n2/common": "file:../common",
+    "@n2/net": "file:../net"
+  }
+}

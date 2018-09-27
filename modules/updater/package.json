@@ -1,0 +1,22 @@
+{
+  "name": "@n2/updater",
+  "version": "0.1.0",
+  "description": "The updater module for n2",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {},
+  "keywords": [
+    "typescript",
+    "rotmg",
+    "n2"
+  ],
+  "author": "tcrane",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^10.9.4"
+  },
+  "dependencies": {
+    "@n2/common": "file:../common",
+    "@n2/net": "file:../net"
+  }
+}
