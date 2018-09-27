@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import 'mocha';
 
-import { RC4, OUTGOING_KEY } from '../../src';
+import { RC4, OUTGOING_KEY } from '../src';
 
 describe('RC4', () => {
   it('should throw a TypeError for invalid constructor inputs.', () => {

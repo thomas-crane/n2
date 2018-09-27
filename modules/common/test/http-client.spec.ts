@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import 'mocha';
 
-import { HttpClient } from '../../src';
-import * as mockServer from '../../../../lib/test-api';
-import { MockStream } from '../../../../lib/mock-stream';
+import { HttpClient } from '../src';
+import * as mockServer from '../../../lib/test-api';
+import { MockStream } from '../../../lib/mock-stream';
 
 describe('HttpClient', () => {
   describe('#get()', () => {

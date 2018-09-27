@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import 'mocha';
 
-import { ServerParser } from '../../src';
+import { ServerParser } from '../src';
 
 // tslint:disable-next-line:max-line-length
 const SAMPLE_DATA = '<Server><Name>EUEast</Name><DNS>18.195.167.79</DNS><Lat>54.69</Lat><Long>25.28</Long><Usage>0.00</Usage></Server><Server><Name>Australia</Name><DNS>54.252.165.65</DNS><Lat>-33.87</Lat><Long>151.21</Long><Usage>0.00</Usage></Server><Server><Name>EUNorth</Name><DNS>54.93.78.148</DNS><Lat>59.33</Lat><Long>18.06</Long><Usage>0.00</Usage></Server>';

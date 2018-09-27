@@ -24,7 +24,7 @@
     "clean": "gulp clean",
     "compile": "gulp compile",
     "build": "gulp build",
-    "test": "mocha -r ts-node/register modules/**/test/**/*.spec.ts"
+    "test": "mocha -r ts-node/register modules/**/test/*.spec.ts"
   },
   "repository": {
     "type": "git",

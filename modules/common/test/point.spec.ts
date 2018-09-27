@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import 'mocha';
 
-import { Point } from '../../src';
+import { Point } from '../src';
 
 describe('Point', () => {
   it('should be initialised at the origin if no args are provided.', () => {

@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import 'mocha';
 
-import { Logger, LogLevel } from '../../src';
-import { TestLogger } from '../../../../lib/test-logger';
+import { Logger, LogLevel } from '../src';
+import { TestLogger } from '../../../lib/test-logger';
 
 describe('Logger', () => {
   it('should start with an empty logging chain.', () => {

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import 'mocha';
 
-import { AccountParser } from '../../src';
+import { AccountParser } from '../src';
 
 // tslint:disable-next-line:max-line-length
 const SAMPLE_DATA = '<Chars nextCharId="2" maxNumChars="1"><Char id="1"><ObjectType>782</ObjectType><Level>1</Level><Exp>100</Exp><CurrentFame>10</CurrentFame><Equipment>1,-1,2000,-1,3000,1500,421,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1</Equipment><MaxHitPoints>100</MaxHitPoints><HitPoints>100</HitPoints><MaxMagicPoints>150</MaxMagicPoints><MagicPoints>150</MagicPoints><Attack>15</Attack><Defense>0</Defense><Speed>20</Speed><Dexterity>20</Dexterity><HpRegen>40</HpRegen><MpRegen>20</MpRegen><HealthStackCount>1</HealthStackCount><MagicStackCount>0</MagicStackCount><Dead>False</Dead><Account><Name>HelloWorld</Name></Account>';
