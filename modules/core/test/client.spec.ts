@@ -22,14 +22,14 @@ describe('Client', () => {
   describe('#connected', () => {
     const server = net.createServer();
     beforeEach((done) => {
-      server.listen(2050, 'localhost', done);
+      server.listen(2050, '0.0.0.0', done);
     });
     afterEach((done) => {
       server.close(done);
     });
     it('should be true if the client is currently connected.', (done) => {
       const client = new Client(mockAccountInfo);
-      client.io.socket.connect(2050, 'localhost', () => {
+      client.io.socket.connect(2050, '0.0.0.0', () => {
         expect(client.connected).to.equal(true, 'Incorrect value for connected getter.');
         done();
       });
@@ -37,19 +37,19 @@ describe('Client', () => {
     it('should be false if the client is not connected.', (done) => {
       const client = new Client(mockAccountInfo);
       expect(client.connected).to.equal(false, 'Incorrect initial value for connected getter.');
-      client.io.socket.connect(2050, 'localhost', () => {
-        client.io.socket.destroy();
-      });
       client.io.socket.once('close', () => {
         expect(client.connected).to.equal(false, 'Incorrect value for connected getter.');
         done();
+      });
+      client.io.socket.connect(2050, '0.0.0.0', () => {
+        client.io.socket.destroy();
       });
     });
   });
   describe('#connect()', () => {
     const server = net.createServer();
     beforeEach((done) => {
-      server.listen(2050, 'localhost', done);
+      server.listen(2050, '0.0.0.0', done);
     });
     afterEach((done) => {
       server.close(done);
@@ -59,10 +59,10 @@ describe('Client', () => {
       expect(() => client.connect(432 as any, null)).to.throw(TypeError);
       expect(() => client.connect(null, null)).to.throw(TypeError);
       expect(() => client.connect(['String', 'array'] as any, null)).to.throw(TypeError);
-      expect(() => client.connect('localhost', 123 as any)).to.throw(TypeError);
-      expect(() => client.connect('localhost', null)).to.throw(TypeError);
-      expect(() => client.connect('localhost', 'test string' as any)).to.throw(TypeError);
-      expect(() => client.connect('localhost', {} as any)).to.throw(TypeError);
+      expect(() => client.connect('0.0.0.0', 123 as any)).to.throw(TypeError);
+      expect(() => client.connect('0.0.0.0', null)).to.throw(TypeError);
+      expect(() => client.connect('0.0.0.0', 'test string' as any)).to.throw(TypeError);
+      expect(() => client.connect('0.0.0.0', {} as any)).to.throw(TypeError);
     });
     it('should connect and initiate the Hello handshake.', (done) => {
       Mapper.mapIds({ 16: PacketType.HELLO });
@@ -75,7 +75,7 @@ describe('Client', () => {
           done();
         });
       });
-      client.connect('localhost', {
+      client.connect('0.0.0.0', {
         buildVersion: 'X20.0.0',
         gameId: -2,
         key: [],
@@ -83,7 +83,7 @@ describe('Client', () => {
         characterId: 1
       });
     });
-    it('should return a promise which resolves when the Hello handshake is complete.', (done) => {
+    it('should return a promise which resolves when the Hello handshake is complete.', () => {
       Mapper.mapIds({ 16: PacketType.HELLO, 8: PacketType.CREATE_SUCCESS });
       const client = new Client(mockAccountInfo);
       server.once('connection', (socket) => {
@@ -94,7 +94,7 @@ describe('Client', () => {
           socket.write(reply);
         });
       });
-      client.connect('localhost', {
+      return client.connect('0.0.0.0', {
         buildVersion: 'X20.0.0',
         gameId: -2,
         key: [],
@@ -103,14 +103,13 @@ describe('Client', () => {
       }).then(() => {
         expect(client.connected).to.equal(true, 'Client not connected.');
         client.io.socket.destroy();
-        done();
       });
     });
   });
   describe('#disconnect()', () => {
     const server = net.createServer();
     beforeEach((done) => {
-      server.listen(2050, 'localhost', done);
+      server.listen(2050, '0.0.0.0', done);
     });
     afterEach((done) => {
       server.close(done);
@@ -123,13 +122,13 @@ describe('Client', () => {
           done();
         });
       });
-      client.io.socket.connect(2050, 'localhost', () => {
+      client.io.socket.connect(2050, '0.0.0.0', () => {
         client.disconnect();
       });
     });
     it('should return a promise which resolves when the client has disconnected.', (done) => {
       const client = new Client(mockAccountInfo);
-      client.io.socket.connect(2050, 'localhost', () => {
+      client.io.socket.connect(2050, '0.0.0.0', () => {
         client.disconnect().then(() => {
           expect(client.connected).to.equal(false, 'Client not disconnected.');
           done();
