@@ -1,6 +1,6 @@
 {
   "name": "@n2/net",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The networking module for n2",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -20,7 +20,7 @@
     "tsai": "^2.1.0"
   },
   "dependencies": {
-    "@n2/common": "file:../common",
+    "@n2/common": "^0.1.0",
     "node-rsa": "^1.0.1"
   }
 }
