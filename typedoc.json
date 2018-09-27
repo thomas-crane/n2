@@ -1,0 +1,12 @@
+{
+  "name": "n2",
+  "readme": "./readme.md",
+  "mode": "modules",
+  "rootDir": "./modules/",
+  "exclude": [
+    "**/*+(index).ts",
+    "**/*+(spec).ts"
+  ],
+  "excludeExternals": true,
+  "out": "./docs"
+}
