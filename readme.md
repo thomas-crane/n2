@@ -24,8 +24,22 @@ As always, feel free to report bugs or submit feature requests on the GitHub iss
 
 ## Installing
 
+First, clone this repository.
+
 ```bash
 git clone https://github.com/thomas-crane/n2
+```
+
+Change the current working directory of the console to the n2 folder.
+
+```bash
+cd n2
+```
+
+Then install the dependencies.
+
+```bash
+npm install
 ```
 
 ## Building
