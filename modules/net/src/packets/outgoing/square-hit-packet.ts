@@ -3,14 +3,15 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * > Unknown.
  */
-export class SquareHitPacket implements OutgoingPacket {
+export class SquareHitPacket implements Packet {
 
   type = PacketType.SQUAREHIT;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -31,5 +32,11 @@ export class SquareHitPacket implements OutgoingPacket {
     buffer.writeInt32(this.time);
     buffer.writeByte(this.bulletId);
     buffer.writeInt32(this.objectId);
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.time = buffer.readInt32();
+    this.bulletId = buffer.readByte();
+    this.objectId = buffer.readInt32();
   }
 }

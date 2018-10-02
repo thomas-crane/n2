@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Received when a player has died.
  */
-export class DeathPacket implements IncomingPacket {
+export class DeathPacket implements Packet {
 
   type = PacketType.DEATH;
   propagate = true;
@@ -49,5 +49,13 @@ export class DeathPacket implements IncomingPacket {
     this.zombieType = buffer.readInt32();
     this.zombieId = buffer.readInt32();
     this.isZombie = this.zombieId !== -1;
+  }
+
+  write(buffer: PacketBuffer): void {
+   buffer.writeString(this.accountId);
+   buffer.writeInt32(this.charId);
+   buffer.writeString(this.killedBy);
+   buffer.writeInt32(this.zombieType);
+   buffer.writeInt32(this.zombieId);
   }
 }

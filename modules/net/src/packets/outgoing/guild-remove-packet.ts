@@ -3,14 +3,15 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Sent to remove a player from the client's current guild.
  */
-export class GuildRemovePacket implements OutgoingPacket {
+export class GuildRemovePacket implements Packet {
 
   type = PacketType.GUILDREMOVE;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -21,5 +22,9 @@ export class GuildRemovePacket implements OutgoingPacket {
 
   write(buffer: PacketBuffer): void {
     buffer.writeString(this.name);
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.name = buffer.readString();
   }
 }

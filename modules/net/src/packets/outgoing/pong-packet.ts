@@ -3,14 +3,15 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Sent to acknowledge the `PingPacket.`
  */
-export class PongPacket implements OutgoingPacket {
+export class PongPacket implements Packet {
 
   type = PacketType.PONG;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -26,5 +27,10 @@ export class PongPacket implements OutgoingPacket {
   write(buffer: PacketBuffer): void {
     buffer.writeInt32(this.serial);
     buffer.writeInt32(this.time);
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.serial = buffer.readInt32();
+    this.time = buffer.readInt32();
   }
 }

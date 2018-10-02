@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Received in response to a `ClaimDailyRewardMessage`.
  */
-export class ClaimDailyRewardResponse implements IncomingPacket {
+export class ClaimDailyRewardResponse implements Packet {
 
   type = PacketType.LOGIN_REWARD_MSG;
   propagate = true;
@@ -32,5 +32,11 @@ export class ClaimDailyRewardResponse implements IncomingPacket {
     this.itemId = buffer.readInt32();
     this.quantity = buffer.readInt32();
     this.gold = buffer.readInt32();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeInt32(this.itemId);
+    buffer.writeInt32(this.quantity);
+    buffer.writeInt32(this.gold);
   }
 }

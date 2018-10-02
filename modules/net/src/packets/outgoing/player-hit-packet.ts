@@ -3,14 +3,15 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Sent when the player is hit.
  */
-export class PlayerHitPacket implements OutgoingPacket {
+export class PlayerHitPacket implements Packet {
 
   type = PacketType.PLAYERHIT;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -26,5 +27,10 @@ export class PlayerHitPacket implements OutgoingPacket {
   write(buffer: PacketBuffer): void {
     buffer.writeUnsignedByte(this.bulletId);
     buffer.writeInt32(this.objectId);
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.bulletId = buffer.readUnsignedByte();
+    this.objectId = buffer.readInt32();
   }
 }

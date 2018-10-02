@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Received to tell the player about damage done to other players and enemies.
  */
-export class DamagePacket implements IncomingPacket {
+export class DamagePacket implements Packet {
 
   type = PacketType.DAMAGE;
   propagate = true;
@@ -44,6 +44,10 @@ export class DamagePacket implements IncomingPacket {
   objectId: number;
   //#endregion
 
+  constructor() {
+    this.effects = [];
+  }
+
   read(buffer: PacketBuffer): void {
     this.targetId = buffer.readInt32();
     const effectsLen = buffer.readUnsignedByte();
@@ -56,5 +60,18 @@ export class DamagePacket implements IncomingPacket {
     this.armorPierce = buffer.readBoolean();
     this.bulletId = buffer.readUnsignedByte();
     this.objectId = buffer.readInt32();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeInt32(this.targetId);
+    buffer.writeUnsignedByte(this.effects.length);
+    for (const effect of this.effects) {
+      buffer.writeUnsignedByte(effect);
+    }
+    buffer.writeUnsignedShort(this.damageAmount);
+    buffer.writeBoolean(this.kill);
+    buffer.writeBoolean(this.armorPierce);
+    buffer.writeUnsignedByte(this.bulletId);
+    buffer.writeInt32(this.objectId);
   }
 }

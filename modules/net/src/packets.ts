@@ -2,7 +2,7 @@
  * @module net
  */
 import { PacketType } from './packet-type';
-import { IncomingPacket, OutgoingPacket } from './packet';
+import { Packet } from './packet';
 
 import * as IncomingPackets from './packets/incoming';
 import * as OutgoingPackets from './packets/outgoing';
@@ -16,7 +16,7 @@ export class Packets {
    * @param type The type of packet to create.
    * @throws {Error} if the packet cannot be created.
    */
-  static create(type: PacketType): IncomingPacket | OutgoingPacket {
+  static create(type: PacketType): Packet {
     if (typeof type !== 'string') {
       throw new TypeError(`Parameter "type" must be a string, not ${typeof type}`);
     }

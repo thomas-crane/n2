@@ -3,14 +3,15 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Sent to edit an account id list.
  */
-export class EditAccountListPacket implements OutgoingPacket {
+export class EditAccountListPacket implements Packet {
 
   type = PacketType.EDITACCOUNTLIST;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -31,5 +32,11 @@ export class EditAccountListPacket implements OutgoingPacket {
     buffer.writeInt32(this.accountListId);
     buffer.writeBoolean(this.add);
     buffer.writeInt32(this.objectId);
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.accountListId = buffer.readInt32();
+    this.add = buffer.readBoolean();
+    this.objectId = buffer.readInt32();
   }
 }

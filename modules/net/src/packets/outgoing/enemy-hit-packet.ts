@@ -3,14 +3,15 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Sent when an enemy has been hit by the player.
  */
-export class EnemyHitPacket implements OutgoingPacket {
+export class EnemyHitPacket implements Packet {
 
   type = PacketType.ENEMYHIT;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -36,5 +37,12 @@ export class EnemyHitPacket implements OutgoingPacket {
     buffer.writeByte(this.bulletId);
     buffer.writeInt32(this.targetId);
     buffer.writeBoolean(this.kill);
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.time = buffer.readInt32();
+    this.bulletId = buffer.readByte();
+    this.targetId = buffer.readInt32();
+    this.kill = buffer.readBoolean();
   }
 }

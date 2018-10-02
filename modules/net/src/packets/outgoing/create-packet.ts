@@ -3,14 +3,15 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Sent to create a new character.
  */
-export class CreatePacket implements OutgoingPacket {
+export class CreatePacket implements Packet {
 
   type = PacketType.CREATE;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -27,5 +28,10 @@ export class CreatePacket implements OutgoingPacket {
   write(buffer: PacketBuffer): void {
     buffer.writeShort(this.classType);
     buffer.writeShort(this.skinType);
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.classType = buffer.readShort();
+    this.skinType = buffer.readShort();
   }
 }

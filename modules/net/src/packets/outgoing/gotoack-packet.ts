@@ -3,14 +3,15 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Sent to acknowledge a `GotoPacket`.
  */
-export class GotoAckPacket implements OutgoingPacket {
+export class GotoAckPacket implements Packet {
 
   type = PacketType.GOTOACK;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -21,5 +22,9 @@ export class GotoAckPacket implements OutgoingPacket {
 
   write(buffer: PacketBuffer): void {
     buffer.writeInt32(this.time);
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.time = buffer.readInt32();
   }
 }

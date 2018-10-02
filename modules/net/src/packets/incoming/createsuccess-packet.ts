@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Received in response to a `CreatePacket`.
  */
-export class CreateSuccessPacket implements IncomingPacket {
+export class CreateSuccessPacket implements Packet {
 
   type = PacketType.CREATE_SUCCESS;
   propagate = true;
@@ -27,5 +27,10 @@ export class CreateSuccessPacket implements IncomingPacket {
   read(buffer: PacketBuffer): void {
     this.objectId = buffer.readInt32();
     this.charId = buffer.readInt32();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeInt32(this.objectId);
+    buffer.writeInt32(this.charId);
   }
 }

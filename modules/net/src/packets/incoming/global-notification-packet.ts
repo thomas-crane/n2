@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Received when a global notification is sent out to all players.
  */
-export class GlobalNotificationPacket implements IncomingPacket {
+export class GlobalNotificationPacket implements Packet {
 
   type = PacketType.GLOBAL_NOTIFICATION;
   propagate = true;
@@ -27,5 +27,10 @@ export class GlobalNotificationPacket implements IncomingPacket {
   read(buffer: PacketBuffer): void {
     this.notificationType = buffer.readInt32();
     this.text = buffer.readString();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeInt32(this.notificationType);
+    buffer.writeString(this.text);
   }
 }

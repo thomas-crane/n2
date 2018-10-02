@@ -3,14 +3,14 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 import { TradeResult } from '@n2/common';
 
 /**
  * Received when the active trade has completed, regardless of whether
  * it was accepted or cancelled.
  */
-export class TradeDonePacket implements IncomingPacket {
+export class TradeDonePacket implements Packet {
 
   type = PacketType.TRADEDONE;
   propagate = true;
@@ -29,5 +29,10 @@ export class TradeDonePacket implements IncomingPacket {
   read(buffer: PacketBuffer): void {
     this.code = buffer.readInt32();
     this.description = buffer.readString();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeInt32(this.code);
+    buffer.writeString(this.description);
   }
 }

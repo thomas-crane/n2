@@ -3,13 +3,13 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 import { ObjectStatusData } from '../../data/object-status-data';
 
 /**
  * Received to notify the player of a new game tick.
  */
-export class NewTickPacket implements IncomingPacket {
+export class NewTickPacket implements Packet {
 
   type = PacketType.NEWTICK;
   propagate = true;
@@ -35,6 +35,10 @@ export class NewTickPacket implements IncomingPacket {
   statuses: ObjectStatusData[];
   //#endregion
 
+  constructor() {
+    this.statuses = [];
+  }
+
   read(buffer: PacketBuffer): void {
     this.tickId = buffer.readInt32();
     this.tickTime = buffer.readInt32();
@@ -44,6 +48,15 @@ export class NewTickPacket implements IncomingPacket {
       const osd = new ObjectStatusData();
       osd.read(buffer);
       this.statuses[i] = osd;
+    }
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeInt32(this.tickId);
+    buffer.writeInt32(this.tickTime);
+    buffer.writeShort(this.statuses.length);
+    for (const status of this.statuses) {
+      status.write(buffer);
     }
   }
 }

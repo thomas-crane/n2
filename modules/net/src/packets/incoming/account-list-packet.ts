@@ -3,13 +3,13 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Received to provide lists of accounts ids which are
  * those of players who have been locked, ignored, etc.
  */
-export class AccountListPacket implements IncomingPacket {
+export class AccountListPacket implements Packet {
 
   type = PacketType.ACCOUNTLIST;
   propagate = true;
@@ -29,6 +29,10 @@ export class AccountListPacket implements IncomingPacket {
   lockAction: number;
   //#endregion
 
+  constructor() {
+    this.accountIds = [];
+  }
+
   read(buffer: PacketBuffer): void {
     this.accountListId = buffer.readInt32();
     const accountIdsLen = buffer.readShort();
@@ -37,5 +41,14 @@ export class AccountListPacket implements IncomingPacket {
       this.accountIds[i] = buffer.readString();
     }
     this.lockAction = buffer.readInt32();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeInt32(this.accountListId);
+    buffer.writeShort(this.accountIds.length);
+    for (const id of this.accountIds) {
+      buffer.writeString(id);
+    }
+    buffer.writeInt32(this.lockAction);
   }
 }

@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Received to tell the player the object id of their current quest.
  */
-export class QuestObjectIdPacket implements IncomingPacket {
+export class QuestObjectIdPacket implements Packet {
 
   type = PacketType.QUESTOBJID;
   propagate = true;
@@ -22,5 +22,9 @@ export class QuestObjectIdPacket implements IncomingPacket {
 
   read(buffer: PacketBuffer): void {
     this.objectId = buffer.readInt32();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeInt32(this.objectId);
   }
 }

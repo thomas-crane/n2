@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Received to notify the player that a new skin has been unlocked.
  */
-export class ReskinUnlockPacket implements IncomingPacket {
+export class ReskinUnlockPacket implements Packet {
 
   type = PacketType.RESKIN_UNLOCK;
   propagate = true;
@@ -22,5 +22,9 @@ export class ReskinUnlockPacket implements IncomingPacket {
 
   read(buffer: PacketBuffer): void {
     this.skinId = buffer.readInt32();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeInt32(this.skinId);
   }
 }

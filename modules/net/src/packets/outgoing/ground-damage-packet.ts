@@ -3,15 +3,16 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 import { WorldPosData } from '../../data/world-pos-data';
 
 /**
  * Sent when the client takes damage from a ground source, such as lava.
  */
-export class GroundDamagePacket implements OutgoingPacket {
+export class GroundDamagePacket implements Packet {
 
   type = PacketType.GROUNDDAMAGE;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -27,5 +28,11 @@ export class GroundDamagePacket implements OutgoingPacket {
   write(buffer: PacketBuffer): void {
     buffer.writeInt32(this.time);
     this.position.write(buffer);
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.time = buffer.readInt32();
+    this.position = new WorldPosData();
+    this.position.read(buffer);
   }
 }

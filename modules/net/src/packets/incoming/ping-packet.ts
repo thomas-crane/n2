@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Received occasionally by the server to prompt a response from the client.
  */
-export class PingPacket implements IncomingPacket {
+export class PingPacket implements Packet {
 
   type = PacketType.PING;
   propagate = true;
@@ -22,5 +22,9 @@ export class PingPacket implements IncomingPacket {
 
   read(buffer: PacketBuffer): void {
     this.serial = buffer.readInt32();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeInt32(this.serial);
   }
 }

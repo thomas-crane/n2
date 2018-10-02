@@ -3,13 +3,13 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 import { WorldPosData } from '../../data/world-pos-data';
 
 /**
  * Received when a visible enemy shoots a projectile.
  */
-export class EnemyShootPacket implements IncomingPacket {
+export class EnemyShootPacket implements Packet {
 
   type = PacketType.ENEMYSHOOT;
   propagate = true;
@@ -64,6 +64,19 @@ export class EnemyShootPacket implements IncomingPacket {
     } else {
       this.numShots = 1;
       this.angleInc = 0;
+    }
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeUnsignedByte(this.bulletId);
+    buffer.writeInt32(this.ownerId);
+    buffer.writeUnsignedByte(this.bulletType);
+    this.startingPos.write(buffer);
+    buffer.writeFloat(this.angle);
+    buffer.writeShort(this.damage);
+    if (this.numShots !== 1) {
+      buffer.writeUnsignedByte(this.numShots);
+      buffer.writeFloat(this.angleInc);
     }
   }
 }

@@ -3,16 +3,17 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 import { SlotObjectData } from '../../data/slot-object-data';
 import { WorldPosData } from '../../data/world-pos-data';
 
 /**
  * Sent to use an item, such as an ability or consumable.
  */
-export class UseItemPacket implements OutgoingPacket {
+export class UseItemPacket implements Packet {
 
   type = PacketType.USEITEM;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -38,5 +39,14 @@ export class UseItemPacket implements OutgoingPacket {
     this.slotObject.write(buffer);
     this.itemUsePos.write(buffer);
     buffer.writeByte(this.useType);
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.time = buffer.readInt32();
+    this.slotObject = new SlotObjectData();
+    this.slotObject.read(buffer);
+    this.itemUsePos = new WorldPosData();
+    this.itemUsePos.read(buffer);
+    this.useType = buffer.readByte();
   }
 }

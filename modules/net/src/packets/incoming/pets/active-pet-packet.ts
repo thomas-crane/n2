@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../../packet-buffer';
 import { PacketType } from '../../../packet-type';
-import { IncomingPacket } from '../../../packet';
+import { Packet } from '../../../packet';
 
 /**
  * Received to notify the player of a new pet.
  */
-export class ActivePetPacket implements IncomingPacket {
+export class ActivePetPacket implements Packet {
 
   type = PacketType.ACTIVEPETUPDATE;
   propagate = true;
@@ -22,5 +22,9 @@ export class ActivePetPacket implements IncomingPacket {
 
   read(buffer: PacketBuffer): void {
     this.instanceId = buffer.readInt32();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeInt32(this.instanceId);
   }
 }

@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../../packet-buffer';
 import { PacketType } from '../../../packet-type';
-import { IncomingPacket } from '../../../packet';
+import { Packet } from '../../../packet';
 
 /**
  * Recieved to give the player information about a newly hatched pet.
  */
-export class HatchPetMessage implements IncomingPacket {
+export class HatchPetMessage implements Packet {
 
   type = PacketType.HATCH_PET;
   propagate = true;
@@ -27,5 +27,10 @@ export class HatchPetMessage implements IncomingPacket {
   read(buffer: PacketBuffer): void {
     this.petName = buffer.readString();
     this.petSkin = buffer.readInt32();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeString(this.petName);
+    buffer.writeInt32(this.petSkin);
   }
 }

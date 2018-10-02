@@ -3,14 +3,15 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Sent when the client sends a chat message.
  */
-export class PlayerTextPacket implements OutgoingPacket {
+export class PlayerTextPacket implements Packet {
 
   type = PacketType.PLAYERTEXT;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -21,5 +22,9 @@ export class PlayerTextPacket implements OutgoingPacket {
 
   write(buffer: PacketBuffer): void {
     buffer.writeString(this.text);
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.text = buffer.readString();
   }
 }

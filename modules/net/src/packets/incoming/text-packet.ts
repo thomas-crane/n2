@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Received when a chat message is sent by another player or NPC.
  */
-export class TextPacket implements IncomingPacket {
+export class TextPacket implements Packet {
 
   type = PacketType.TEXT;
   propagate = true;
@@ -53,5 +53,14 @@ export class TextPacket implements IncomingPacket {
     this.recipient = buffer.readString();
     this.text = buffer.readString();
     this.cleanText = buffer.readString();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeString(this.name);
+    buffer.writeInt32(this.objectId);
+    buffer.writeInt32(this.numStars);
+    buffer.writeUnsignedByte(this.bubbleTime);
+    buffer.writeString(this.text);
+    buffer.writeString(this.cleanText);
   }
 }

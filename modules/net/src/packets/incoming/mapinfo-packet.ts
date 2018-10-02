@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Received in response to the `HelloPacket`.
  */
-export class MapInfoPacket implements IncomingPacket {
+export class MapInfoPacket implements Packet {
 
   type = PacketType.MAPINFO;
   propagate = true;
@@ -60,6 +60,11 @@ export class MapInfoPacket implements IncomingPacket {
   extraXML: string[];
   //#endregion
 
+  constructor() {
+    this.clientXML = [];
+    this.extraXML = [];
+  }
+
   read(buffer: PacketBuffer): void {
     this.width = buffer.readInt32();
     this.height = buffer.readInt32();
@@ -77,6 +82,26 @@ export class MapInfoPacket implements IncomingPacket {
     this.extraXML = new Array<string>(buffer.readShort());
     for (let i = 0; i < this.extraXML.length; i++) {
       this.extraXML[i] = buffer.readStringUTF32();
+    }
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeInt32(this.width);
+    buffer.writeInt32(this.height);
+    buffer.writeString(this.name);
+    buffer.writeString(this.displayName);
+    buffer.writeInt32(this.fp);
+    buffer.writeInt32(this.background);
+    buffer.writeInt32(this.difficulty);
+    buffer.writeBoolean(this.allowPlayerTeleport);
+    buffer.writeBoolean(this.showDisplays);
+    buffer.writeShort(this.clientXML.length);
+    for (const xml of this.clientXML) {
+      buffer.writeStringUTF32(xml);
+    }
+    buffer.writeShort(this.extraXML.length);
+    for (const xml of this.extraXML) {
+      buffer.writeStringUTF32(xml);
     }
   }
 }

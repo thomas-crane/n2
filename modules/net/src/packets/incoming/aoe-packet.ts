@@ -3,13 +3,13 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 import { WorldPosData } from '../../data/world-pos-data';
 
 /**
  * Received when an AoE grenade has hit the ground.
  */
-export class AoePacket implements IncomingPacket {
+export class AoePacket implements Packet {
 
   type = PacketType.AOE;
   propagate = true;
@@ -56,5 +56,15 @@ export class AoePacket implements IncomingPacket {
     this.duration = buffer.readFloat();
     this.origType = buffer.readUnsignedShort();
     this.color = buffer.readInt32();
+  }
+
+  write(buffer: PacketBuffer): void {
+    this.pos.write(buffer);
+    buffer.writeFloat(this.radius);
+    buffer.writeUnsignedShort(this.damage);
+    buffer.writeUnsignedByte(this.effect);
+    buffer.writeFloat(this.duration);
+    buffer.writeUnsignedShort(this.origType);
+    buffer.writeInt32(this.color);
   }
 }

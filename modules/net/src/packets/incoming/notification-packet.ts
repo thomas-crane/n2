@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Received when a notification is received by the player.
  */
-export class NotificationPacket implements IncomingPacket {
+export class NotificationPacket implements Packet {
 
   type = PacketType.NOTIFICATION;
   propagate = true;
@@ -32,5 +32,11 @@ export class NotificationPacket implements IncomingPacket {
     this.objectId = buffer.readInt32();
     this.message = buffer.readString();
     this.color = buffer.readInt32();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeInt32(this.objectId);
+    buffer.writeString(this.message);
+    buffer.writeInt32(this.color);
   }
 }

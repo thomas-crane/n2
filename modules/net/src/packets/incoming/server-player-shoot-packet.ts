@@ -3,13 +3,13 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 import { WorldPosData } from '../../data/world-pos-data';
 
 /**
  * Received when another player shoots.
  */
-export class ServerPlayerShootPacket implements IncomingPacket {
+export class ServerPlayerShootPacket implements Packet {
 
   type = PacketType.SERVERPLAYERSHOOT;
   propagate = true;
@@ -49,5 +49,14 @@ export class ServerPlayerShootPacket implements IncomingPacket {
     this.startingPos.read(buffer);
     this.angle = buffer.readFloat();
     this.damage = buffer.readShort();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeUnsignedByte(this.bulletId);
+    buffer.writeInt32(this.ownerId);
+    buffer.writeInt32(this.containerType);
+    this.startingPos.write(buffer);
+    buffer.writeFloat(this.angle);
+    buffer.writeShort(this.damage);
   }
 }

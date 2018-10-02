@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Received to instruct the client to connect to a new host.
  */
-export class ReconnectPacket implements IncomingPacket {
+export class ReconnectPacket implements Packet {
 
   type = PacketType.RECONNECT;
   propagate = true;
@@ -57,5 +57,16 @@ export class ReconnectPacket implements IncomingPacket {
     this.keyTime = buffer.readInt32();
     this.isFromArena = buffer.readBoolean();
     this.key = buffer.readByteArray();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeString(this.name);
+    buffer.writeString(this.host);
+    buffer.writeString(this.stats);
+    buffer.writeInt32(this.port);
+    buffer.writeInt32(this.gameId);
+    buffer.writeInt32(this.keyTime);
+    buffer.writeBoolean(this.isFromArena);
+    buffer.writeByteArray(this.key);
   }
 }

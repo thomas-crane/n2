@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * > Unknown.
  */
-export class GuildResultPacket implements IncomingPacket {
+export class GuildResultPacket implements Packet {
 
   type = PacketType.GUILDRESULT;
   propagate = true;
@@ -27,5 +27,10 @@ export class GuildResultPacket implements IncomingPacket {
   read(buffer: PacketBuffer): void {
     this.success = buffer.readBoolean();
     this.lineBuilderJSON = buffer.readString();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeBoolean(this.success);
+    buffer.writeString(this.lineBuilderJSON);
   }
 }

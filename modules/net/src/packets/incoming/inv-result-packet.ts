@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * > Unknown.
  */
-export class InvResultPacket implements IncomingPacket {
+export class InvResultPacket implements Packet {
 
   type = PacketType.INVRESULT;
   propagate = true;
@@ -22,5 +22,9 @@ export class InvResultPacket implements IncomingPacket {
 
   read(buffer: PacketBuffer): void {
     this.result = buffer.readInt32();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeInt32(this.result);
   }
 }

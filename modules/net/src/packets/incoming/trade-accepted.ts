@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Received when the active trade is accepted.
  */
-export class TradeAcceptedPacket implements IncomingPacket {
+export class TradeAcceptedPacket implements Packet {
 
   type = PacketType.TRADEACCEPTED;
   propagate = true;
@@ -30,6 +30,11 @@ export class TradeAcceptedPacket implements IncomingPacket {
   partnerOffer: boolean[];
   //#endregion
 
+  constructor() {
+    this.clientOffer = [];
+    this.partnerOffer = [];
+  }
+
   read(buffer: PacketBuffer): void {
     const clientOfferLen = buffer.readShort();
     this.clientOffer = new Array<boolean>(clientOfferLen);
@@ -40,6 +45,17 @@ export class TradeAcceptedPacket implements IncomingPacket {
     this.partnerOffer = new Array<boolean>(partnerOfferLen);
     for (let i = 0; i < partnerOfferLen; i++) {
       this.partnerOffer[i] = buffer.readBoolean();
+    }
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeShort(this.clientOffer.length);
+    for (const offer of this.clientOffer) {
+      buffer.writeBoolean(offer);
+    }
+    buffer.writeShort(this.partnerOffer.length);
+    for (const offer of this.partnerOffer) {
+      buffer.writeBoolean(offer);
     }
   }
 }

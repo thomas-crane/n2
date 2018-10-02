@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Received when the active trade is changed.
  */
-export class TradeChangedPacket implements IncomingPacket {
+export class TradeChangedPacket implements Packet {
 
   type = PacketType.TRADECHANGED;
   propagate = true;
@@ -23,11 +23,22 @@ export class TradeChangedPacket implements IncomingPacket {
   offer: boolean[];
   //#endregion
 
+  constructor() {
+    this.offer = [];
+  }
+
   read(buffer: PacketBuffer): void {
     const offerLen = buffer.readShort();
     this.offer = new Array<boolean>(offerLen);
     for (let i = 0; i < offerLen; i++) {
       this.offer[i] = buffer.readBoolean();
+    }
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeShort(this.offer.length);
+    for (const offer of this.offer) {
+      buffer.writeBoolean(offer);
     }
   }
 }

@@ -3,13 +3,13 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 import { FailureCode } from '@n2/common';
 
 /**
  * Received when an error has occurred.
  */
-export class FailurePacket implements IncomingPacket {
+export class FailurePacket implements Packet {
 
   type = PacketType.FAILURE;
   propagate = true;
@@ -29,5 +29,10 @@ export class FailurePacket implements IncomingPacket {
   read(buffer: PacketBuffer): void {
     this.errorId = buffer.readInt32();
     this.errorDescription = buffer.readString();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeInt32(this.errorId);
+    buffer.writeString(this.errorDescription);
   }
 }

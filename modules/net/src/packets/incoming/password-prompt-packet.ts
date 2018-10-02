@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Received to prompt the player to enter their password.
  */
-export class PasswordPromptPacket implements IncomingPacket {
+export class PasswordPromptPacket implements Packet {
 
   type = PacketType.PASSWORD_PROMPT;
   propagate = true;
@@ -22,5 +22,9 @@ export class PasswordPromptPacket implements IncomingPacket {
 
   read(buffer: PacketBuffer): void {
     this.cleanPasswordStatus = buffer.readInt32();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeInt32(this.cleanPasswordStatus);
   }
 }

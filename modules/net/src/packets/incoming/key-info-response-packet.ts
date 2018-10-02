@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * > Unknown.
  */
-export class KeyInfoResponsePacket implements IncomingPacket {
+export class KeyInfoResponsePacket implements Packet {
 
   type = PacketType.KEY_INFO_RESPONSE;
   propagate = true;
@@ -32,5 +32,11 @@ export class KeyInfoResponsePacket implements IncomingPacket {
     this.name = buffer.readString();
     this.description = buffer.readString();
     this.creator = buffer.readString();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeString(this.name);
+    buffer.writeString(this.description);
+    buffer.writeString(this.creator);
   }
 }

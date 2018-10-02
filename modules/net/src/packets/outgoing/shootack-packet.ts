@@ -3,14 +3,15 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Sent to acknowledge an `EnemyShootPacket`.
  */
-export class ShootAckPacket implements OutgoingPacket {
+export class ShootAckPacket implements Packet {
 
   type = PacketType.SHOOTACK;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -21,5 +22,9 @@ export class ShootAckPacket implements OutgoingPacket {
 
   write(buffer: PacketBuffer): void {
     buffer.writeInt32(this.time);
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.time = buffer.readInt32();
   }
 }

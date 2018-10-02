@@ -3,16 +3,16 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
-import { RSA } from '../../crypto';
+import { Packet } from '../../packet';
 
 /**
  * Sent to prompt the server to accept the connection of an account
  * and reply with a `MapInfoPacket`.
  */
-export class HelloPacket implements OutgoingPacket {
+export class HelloPacket implements Packet {
 
   type = PacketType.HELLO;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -76,11 +76,11 @@ export class HelloPacket implements OutgoingPacket {
   write(buffer: PacketBuffer): void {
     buffer.writeString(this.buildVersion);
     buffer.writeInt32(this.gameId);
-    buffer.writeString(RSA.encrypt(this.guid));
+    buffer.writeString(this.guid);
     buffer.writeInt32(Math.floor(Math.random() * 1000000000));
-    buffer.writeString(RSA.encrypt(this.password));
+    buffer.writeString(this.password);
     buffer.writeInt32(Math.floor(Math.random() * 1000000000));
-    buffer.writeString(RSA.encrypt(this.secret));
+    buffer.writeString(this.secret);
     buffer.writeInt32(this.keyTime);
     buffer.writeByteArray(this.key);
     buffer.writeStringUTF32(this.mapJSON);
@@ -90,5 +90,24 @@ export class HelloPacket implements OutgoingPacket {
     buffer.writeString(this.playPlatform);
     buffer.writeString(this.platformToken);
     buffer.writeString(this.userToken);
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.buildVersion = buffer.readString();
+    this.gameId = buffer.readInt32();
+    this.guid = buffer.readString();
+    buffer.readInt32(); // skip random1
+    this.password = buffer.readString();
+    buffer.readInt32(); // skip random2.
+    this.secret = buffer.readString();
+    this.keyTime = buffer.readInt32();
+    this.key = buffer.readByteArray();
+    this.mapJSON = buffer.readStringUTF32();
+    this.entryTag = buffer.readString();
+    this.gameNet = buffer.readString();
+    this.gameNetUserId = buffer.readString();
+    this.playPlatform = buffer.readString();
+    this.platformToken = buffer.readString();
+    this.userToken = buffer.readString();
   }
 }

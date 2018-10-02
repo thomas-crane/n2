@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Received when another player shoots a projectile.
  */
-export class AllyShootPacket implements IncomingPacket {
+export class AllyShootPacket implements Packet {
 
   type = PacketType.ALLYSHOOT;
   propagate = true;
@@ -37,5 +37,12 @@ export class AllyShootPacket implements IncomingPacket {
     this.ownerId = buffer.readInt32();
     this.containerType = buffer.readShort();
     this.angle = buffer.readFloat();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeUnsignedByte(this.bulletId);
+    buffer.writeInt32(this.ownerId);
+    buffer.writeShort(this.containerType);
+    buffer.writeFloat(this.angle);
   }
 }

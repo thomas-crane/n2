@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Received when a trade is requested.
  */
-export class TradeRequestedPacket implements IncomingPacket {
+export class TradeRequestedPacket implements Packet {
 
   type = PacketType.TRADEREQUESTED;
   propagate = true;
@@ -22,5 +22,9 @@ export class TradeRequestedPacket implements IncomingPacket {
 
   read(buffer: PacketBuffer): void {
     this.name = buffer.readString();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeString(this.name);
   }
 }

@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Received in response to a `ChooseNamePacket`.
  */
-export class NameResultPacket implements IncomingPacket {
+export class NameResultPacket implements Packet {
 
   type = PacketType.NAMERESULT;
   propagate = true;
@@ -27,5 +27,10 @@ export class NameResultPacket implements IncomingPacket {
   read(buffer: PacketBuffer): void {
     this.success = buffer.readBoolean();
     this.errorText = buffer.readString();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeBoolean(this.success);
+    buffer.writeString(this.errorText);
   }
 }

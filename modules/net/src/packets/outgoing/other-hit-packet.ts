@@ -3,14 +3,15 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Sent when a non-destructable object, such as a tree, has been hit by a player.
  */
-export class OtherHitPacket implements OutgoingPacket {
+export class OtherHitPacket implements Packet {
 
   type = PacketType.OTHERHIT;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -36,5 +37,12 @@ export class OtherHitPacket implements OutgoingPacket {
     buffer.writeByte(this.bulletId);
     buffer.writeInt32(this.objectId);
     buffer.writeInt32(this.targetId);
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.time = buffer.readInt32();
+    this.bulletId = buffer.readByte();
+    this.objectId = buffer.readInt32();
+    this.targetId = buffer.readInt32();
   }
 }

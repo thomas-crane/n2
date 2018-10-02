@@ -3,14 +3,15 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Sent to claim rewards from the login calendar.
  */
-export class ClaimDailyRewardMessage implements OutgoingPacket {
+export class ClaimDailyRewardMessage implements Packet {
 
   type = PacketType.CLAIM_LOGIN_REWARD_MSG;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -26,5 +27,10 @@ export class ClaimDailyRewardMessage implements OutgoingPacket {
   write(buffer: PacketBuffer): void {
     buffer.writeString(this.claimKey);
     buffer.writeString(this.claimType);
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.claimKey = buffer.readString();
+    this.claimType = buffer.readString();
   }
 }

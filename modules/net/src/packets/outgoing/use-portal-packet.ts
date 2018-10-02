@@ -3,15 +3,16 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Sent to prompt the server to send a `ReconnectPacket` which
  * contains the reconnect information for the used portal.
  */
-export class UsePortalPacket implements OutgoingPacket {
+export class UsePortalPacket implements Packet {
 
   type = PacketType.USEPORTAL;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -22,5 +23,9 @@ export class UsePortalPacket implements OutgoingPacket {
 
   write(buffer: PacketBuffer): void {
     buffer.writeInt32(this.objectId);
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.objectId = buffer.readInt32();
   }
 }

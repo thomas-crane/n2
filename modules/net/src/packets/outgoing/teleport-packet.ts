@@ -3,14 +3,15 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Sent to teleport to another player.
  */
-export class TeleportPacket implements OutgoingPacket {
+export class TeleportPacket implements Packet {
 
   type = PacketType.TELEPORT;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -21,5 +22,9 @@ export class TeleportPacket implements OutgoingPacket {
 
   write(buffer: PacketBuffer): void {
     buffer.writeInt32(this.objectId);
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.objectId = buffer.readInt32();
   }
 }

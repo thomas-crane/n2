@@ -3,14 +3,15 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Sent to accept the current active trade.
  */
-export class AcceptTradePacket implements OutgoingPacket {
+export class AcceptTradePacket implements Packet {
 
   type = PacketType.ACCEPTTRADE;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -29,6 +30,11 @@ export class AcceptTradePacket implements OutgoingPacket {
   partnerOffer: boolean[];
   //#endregion
 
+  constructor() {
+    this.clientOffer = [];
+    this.partnerOffer = [];
+  }
+
   write(buffer: PacketBuffer): void {
     buffer.writeShort(this.clientOffer.length);
     for (const slot of this.clientOffer) {
@@ -37,6 +43,17 @@ export class AcceptTradePacket implements OutgoingPacket {
     buffer.writeShort(this.partnerOffer.length);
     for (const slot of this.partnerOffer) {
       buffer.writeBoolean(slot);
+    }
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.clientOffer = new Array(buffer.readShort());
+    for (let i = 0; i < this.clientOffer.length; i++) {
+      this.clientOffer[i] = buffer.readBoolean();
+    }
+    this.partnerOffer = new Array(buffer.readShort());
+    for (let i = 0; i < this.partnerOffer.length; i++) {
+      this.partnerOffer[i] = buffer.readBoolean();
     }
   }
 }

@@ -3,7 +3,7 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 import { GroundTileData } from '../../data/ground-tile-data';
 import { ObjectData } from '../../data/object-data';
 
@@ -13,7 +13,7 @@ import { ObjectData } from '../../data/object-data';
  * + One or more objects have left the map (become invisible)
  * + New tiles are visible
  */
-export class UpdatePacket implements IncomingPacket {
+export class UpdatePacket implements Packet {
 
   type = PacketType.UPDATE;
   propagate = true;
@@ -32,6 +32,12 @@ export class UpdatePacket implements IncomingPacket {
    */
   drops: number[];
   //#endregion
+
+  constructor() {
+    this.tiles = [];
+    this.newObjects = [];
+    this.drops = [];
+  }
 
   read(buffer: PacketBuffer): void {
     const tilesLen = buffer.readShort();
@@ -54,6 +60,21 @@ export class UpdatePacket implements IncomingPacket {
     this.drops = new Array<number>(dropsLen);
     for (let i = 0; i < dropsLen; i++) {
       this.drops[i] = buffer.readInt32();
+    }
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeShort(this.tiles.length);
+    for (const tile of this.tiles) {
+      tile.write(buffer);
+    }
+    buffer.writeShort(this.newObjects.length);
+    for (const obj of this.newObjects) {
+      obj.write(buffer);
+    }
+    buffer.writeShort(this.drops.length);
+    for (const drop of this.drops) {
+      buffer.writeInt32(drop);
     }
   }
 }

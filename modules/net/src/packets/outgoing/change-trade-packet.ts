@@ -3,14 +3,15 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Sent to change the client's offer in the current active trade.
  */
-export class ChangeTradePacket implements OutgoingPacket {
+export class ChangeTradePacket implements Packet {
 
   type = PacketType.CHANGETRADE;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -26,6 +27,13 @@ export class ChangeTradePacket implements OutgoingPacket {
     buffer.writeShort(this.offer.length);
     for (const slot of this.offer) {
       buffer.writeBoolean(slot);
+    }
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.offer = new Array(buffer.readShort());
+    for (let i = 0; i < this.offer.length; i++) {
+      this.offer[i] = buffer.readBoolean();
     }
   }
 }

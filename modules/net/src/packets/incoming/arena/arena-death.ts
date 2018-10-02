@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../../packet-buffer';
 import { PacketType } from '../../../packet-type';
-import { IncomingPacket } from '../../../packet';
+import { Packet } from '../../../packet';
 
 /**
  * Received when the player has been killed in the arena.
  */
-export class ArenaDeathPacket implements IncomingPacket {
+export class ArenaDeathPacket implements Packet {
 
   type = PacketType.ARENA_DEATH;
   propagate = true;
@@ -22,5 +22,9 @@ export class ArenaDeathPacket implements IncomingPacket {
 
   read(buffer: PacketBuffer): void {
     this.cost = buffer.readInt32();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeInt32(this.cost);
   }
 }

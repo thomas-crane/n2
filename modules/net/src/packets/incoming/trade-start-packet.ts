@@ -3,13 +3,13 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 import { TradeItem } from '../../data/trade-item';
 
 /**
  * Received when a new active trade has been initiated.
  */
-export class TradeStartPacket implements IncomingPacket {
+export class TradeStartPacket implements Packet {
 
   type = PacketType.TRADESTART;
   propagate = true;
@@ -31,6 +31,11 @@ export class TradeStartPacket implements IncomingPacket {
   partnerItems: TradeItem[];
   //#endregion
 
+  constructor() {
+    this.clientItems = [];
+    this.partnerItems = [];
+  }
+
   read(buffer: PacketBuffer): void {
     const clientItemsLen = buffer.readShort();
     this.clientItems = new Array(clientItemsLen);
@@ -46,6 +51,18 @@ export class TradeStartPacket implements IncomingPacket {
       const item = new TradeItem();
       item.read(buffer);
       this.partnerItems[i] = item;
+    }
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeShort(this.clientItems.length);
+    for (const item of this.clientItems) {
+      item.write(buffer);
+    }
+    buffer.writeString(this.partnerName);
+    buffer.writeShort(this.partnerItems.length);
+    for (const item of this.partnerItems) {
+      item.write(buffer);
     }
   }
 }

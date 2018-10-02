@@ -3,7 +3,7 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 import { WorldPosData } from '../../data/world-pos-data';
 import { MoveRecord } from '../../data/move-record';
 
@@ -11,9 +11,10 @@ import { MoveRecord } from '../../data/move-record';
  * Sent to acknowledge a `NewTickPacket`, and to notify the
  * server of the client's current position and time.
  */
-export class MovePacket implements OutgoingPacket {
+export class MovePacket implements Packet {
 
   type = PacketType.MOVE;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -36,14 +37,29 @@ export class MovePacket implements OutgoingPacket {
   records: MoveRecord[];
   //#endregion
 
+  constructor() {
+    this.records = [];
+  }
+
   write(buffer: PacketBuffer): void {
     buffer.writeInt32(this.tickId);
     buffer.writeInt32(this.time);
     this.newPosition.write(buffer);
-    this.records = [];
     buffer.writeShort(this.records.length);
     for (const record of this.records) {
       record.write(buffer);
+    }
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.tickId = buffer.readInt32();
+    this.time = buffer.readInt32();
+    this.newPosition = new WorldPosData();
+    this.newPosition.read(buffer);
+    this.records = new Array(buffer.readShort());
+    for (let i = 0; i < this.records.length; i++) {
+      this.records[i] = new MoveRecord();
+      this.records[i].read(buffer);
     }
   }
 }

@@ -3,14 +3,15 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Sent to create a new guild.
  */
-export class CreateGuildPacket implements OutgoingPacket {
+export class CreateGuildPacket implements Packet {
 
   type = PacketType.CREATEGUILD;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -21,5 +22,9 @@ export class CreateGuildPacket implements OutgoingPacket {
 
   write(buffer: PacketBuffer): void {
     buffer.writeString(this.name);
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.name = buffer.readString();
   }
 }

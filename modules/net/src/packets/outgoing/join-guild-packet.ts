@@ -3,14 +3,15 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { OutgoingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Sent to accept a pending guild invite.
  */
-export class JoinGuildPacket implements OutgoingPacket {
+export class JoinGuildPacket implements Packet {
 
   type = PacketType.JOINGUILD;
+  propagate = true;
 
   //#region packet-specific members
   /**
@@ -21,5 +22,9 @@ export class JoinGuildPacket implements OutgoingPacket {
 
   write(buffer: PacketBuffer): void {
     buffer.writeString(this.guildName);
+  }
+
+  read(buffer: PacketBuffer): void {
+    this.guildName = buffer.readString();
   }
 }

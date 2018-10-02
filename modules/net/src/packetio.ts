@@ -6,7 +6,7 @@ import { Socket } from 'net';
 import { PacketBuffer } from './packet-buffer';
 import { Packets } from './packets';
 import { RC4, OUTGOING_KEY, INCOMING_KEY } from './crypto';
-import { IncomingPacket, OutgoingPacket } from './packet';
+import { Packet } from './packet';
 import { Mapper } from './mapper';
 import { PacketType } from './packet-type';
 import { Logger, LogLevel } from '@n2/common';
@@ -32,14 +32,14 @@ export class PacketIO extends EventEmitter {
   /**
    * The last packet which was received.
    */
-  get lastIncomingPacket(): IncomingPacket {
+  get lastIncomingPacket(): Packet {
     return this._lastIncomingPacket;
   }
 
   /**
    * The last packet which was sent.
    */
-  get lastOutgoingPacket(): OutgoingPacket {
+  get lastOutgoingPacket(): Packet {
     return this._lastOutgoingPacket;
   }
 
@@ -50,8 +50,8 @@ export class PacketIO extends EventEmitter {
   private outgoingBuffer: PacketBuffer;
   private eventHandlers: Map<string, (...args: any[]) => void>;
   // tslint:disable:variable-name
-  private _lastIncomingPacket: IncomingPacket;
-  private _lastOutgoingPacket: OutgoingPacket;
+  private _lastIncomingPacket: Packet;
+  private _lastOutgoingPacket: Packet;
   // tslint:enable:variable-name
 
   /**
@@ -104,7 +104,7 @@ export class PacketIO extends EventEmitter {
    * Sends a packet.
    * @param packet The packet to send.
    */
-  send(packet: OutgoingPacket): void {
+  send(packet: Packet): void {
     if (this.socket.destroyed) {
       return;
     }
@@ -136,12 +136,12 @@ export class PacketIO extends EventEmitter {
    * emit the packet to the clients subscribed to this particular PacketIO.
    * @param packet The packet to emit.
    */
-  emitPacket(packet: IncomingPacket): void {
+  emitPacket(packet: Packet): void {
     if (packet && typeof packet.type === 'string') {
       this._lastIncomingPacket = packet;
       this.emit(packet.type, packet);
     } else {
-      throw new TypeError(`Parameter "packet" must be an IncomingPacket, not ${typeof packet}`);
+      throw new TypeError(`Parameter "packet" must be a Packet, not ${typeof packet}`);
     }
   }
 
@@ -164,17 +164,17 @@ export class PacketIO extends EventEmitter {
     this.checkBuffer();
   }
 
-  private constructPacket(): IncomingPacket {
+  private constructPacket(): Packet {
     this.receiveRC4.cipher(this.packetBuffer.data.slice(5, this.packetBuffer.length));
 
-    let packet: IncomingPacket;
+    let packet: Packet;
     try {
       const id = this.packetBuffer.data.readInt8(4);
       const type = Mapper.map.get(id);
       if (!type) {
         throw new Error(`Mapper is missing a packet type for the id ${id}`);
       }
-      packet = Packets.create(type) as IncomingPacket;
+      packet = Packets.create(type) as Packet;
     } catch (error) {
       Logger.log('PacketIO', error.message, LogLevel.Error);
       this.emitError(error);

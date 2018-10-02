@@ -3,12 +3,12 @@
  */
 import { PacketBuffer } from '../../packet-buffer';
 import { PacketType } from '../../packet-type';
-import { IncomingPacket } from '../../packet';
+import { Packet } from '../../packet';
 
 /**
  * Received when a new ability has been unlocked by the player.
  */
-export class NewAbilityMessage implements IncomingPacket {
+export class NewAbilityMessage implements Packet {
 
   type = PacketType.NEW_ABILITY;
   propagate = true;
@@ -22,5 +22,9 @@ export class NewAbilityMessage implements IncomingPacket {
 
   read(buffer: PacketBuffer): void {
     this.abilityType = buffer.readInt32();
+  }
+
+  write(buffer: PacketBuffer): void {
+    buffer.writeInt32(this.abilityType);
   }
 }
