@@ -64,6 +64,7 @@
 			<div class="tsd-panel tsd-typography">
 				<h1 id="n2">n2</h1>
 				<p>A collection of modules for building clientless applications for Realm of the Mad God.</p>
+				<p><a href="https://travis-ci.org/thomas-crane/n2"><img src="https://travis-ci.org/thomas-crane/n2.svg?branch=master" alt="Build Status"></a></p>
 				<h2 id="contents">Contents</h2>
 				<ul>
 					<li><a href="#foreword">Foreword</a></li>
@@ -81,7 +82,12 @@
 				<p>Being in early development also means that documentation (including usage guides) may not be as comprehensive until later in the development process.</p>
 				<p>As always, feel free to report bugs or submit feature requests on the GitHub issues page.</p>
 				<h2 id="installing">Installing</h2>
+				<p>First, clone this repository.</p>
 				<pre><code class="language-bash">git <span class="hljs-built_in">clone</span> https://github.com/thomas-crane/n2</code></pre>
+				<p>Change the current working directory of the console to the n2 folder.</p>
+				<pre><code class="language-bash"><span class="hljs-built_in">cd</span> n2</code></pre>
+				<p>Then install the dependencies.</p>
+				<pre><code class="language-bash">npm install</code></pre>
 				<h2 id="building">Building</h2>
 				<pre><code class="language-bash">npm run gulp</code></pre>
 				<p>Note that if <a href="https://gulpjs.com/"><code>gulp-cli</code></a> is globally installed, this, and subsequent mentions of <code>npm run gulp</code> can simply be replaced with</p>

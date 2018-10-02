@@ -85,7 +85,7 @@
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/net.outgoingpacket.html" class="tsd-signature-type">OutgoingPacket</a></li>
+					<li><a href="../interfaces/net.packet.html" class="tsd-signature-type">Packet</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -95,12 +95,14 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="net_packets_outgoing.acceptarenadeathpacket.html#propagate" class="tsd-kind-icon">propagate</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="net_packets_outgoing.acceptarenadeathpacket.html#type" class="tsd-kind-icon">type</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="net_packets_outgoing.acceptarenadeathpacket.html#read" class="tsd-kind-icon">read</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="net_packets_outgoing.acceptarenadeathpacket.html#write" class="tsd-kind-icon">write</a></li>
 							</ul>
 						</section>
@@ -110,19 +112,54 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="propagate" class="tsd-anchor"></a>
+					<h3>propagate</h3>
+					<div class="tsd-signature tsd-kind-icon">propagate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
+					<aside class="tsd-sources">
+						<p>Implementation of <a href="../interfaces/net.packet.html">Packet</a>.<a href="../interfaces/net.packet.html#propagate">propagate</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packets/outgoing/arena/accept-arena-death.ts#L14">net/src/packets/outgoing/arena/accept-arena-death.ts:14</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="type" class="tsd-anchor"></a>
 					<h3>type</h3>
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../enums/net.packettype.html" class="tsd-signature-type">PacketType</a><span class="tsd-signature-symbol"> =&nbsp;PacketType.ACCEPT_ARENA_DEATH</span></div>
 					<aside class="tsd-sources">
-						<p>Implementation of <a href="../interfaces/net.outgoingpacket.html">OutgoingPacket</a>.<a href="../interfaces/net.outgoingpacket.html#type">type</a></p>
+						<p>Implementation of <a href="../interfaces/net.packet.html">Packet</a>.<a href="../interfaces/net.packet.html#type">type</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/a42c9a9/modules/net/src/packets/outgoing/arena/accept-arena-death.ts#L13">net/src/packets/outgoing/arena/accept-arena-death.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packets/outgoing/arena/accept-arena-death.ts#L13">net/src/packets/outgoing/arena/accept-arena-death.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="read" class="tsd-anchor"></a>
+					<h3>read</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">read<span class="tsd-signature-symbol">(</span>buffer<span class="tsd-signature-symbol">: </span><a href="net.packetbuffer.html" class="tsd-signature-type">PacketBuffer</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/net.packet.html">Packet</a>.<a href="../interfaces/net.packet.html#read">read</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packets/outgoing/arena/accept-arena-death.ts#L24">net/src/packets/outgoing/arena/accept-arena-death.ts:24</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>buffer: <a href="net.packetbuffer.html" class="tsd-signature-type">PacketBuffer</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="write" class="tsd-anchor"></a>
 					<h3>write</h3>
@@ -132,9 +169,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/net.outgoingpacket.html">OutgoingPacket</a>.<a href="../interfaces/net.outgoingpacket.html#write">write</a></p>
+								<p>Implementation of <a href="../interfaces/net.packet.html">Packet</a>.<a href="../interfaces/net.packet.html#write">write</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/a42c9a9/modules/net/src/packets/outgoing/arena/accept-arena-death.ts#L19">net/src/packets/outgoing/arena/accept-arena-death.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packets/outgoing/arena/accept-arena-death.ts#L20">net/src/packets/outgoing/arena/accept-arena-death.ts:20</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -207,7 +244,13 @@
 						<a href="net_packets_outgoing.acceptarenadeathpacket.html" class="tsd-kind-icon">Accept<wbr>Arena<wbr>Death<wbr>Packet</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="net_packets_outgoing.acceptarenadeathpacket.html#propagate" class="tsd-kind-icon">propagate</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="net_packets_outgoing.acceptarenadeathpacket.html#type" class="tsd-kind-icon">type</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="net_packets_outgoing.acceptarenadeathpacket.html#read" class="tsd-kind-icon">read</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="net_packets_outgoing.acceptarenadeathpacket.html#write" class="tsd-kind-icon">write</a>

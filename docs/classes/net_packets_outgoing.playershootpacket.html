@@ -85,7 +85,7 @@
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/net.outgoingpacket.html" class="tsd-signature-type">OutgoingPacket</a></li>
+					<li><a href="../interfaces/net.packet.html" class="tsd-signature-type">Packet</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -98,6 +98,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="net_packets_outgoing.playershootpacket.html#angle" class="tsd-kind-icon">angle</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="net_packets_outgoing.playershootpacket.html#bulletid" class="tsd-kind-icon">bullet<wbr>Id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="net_packets_outgoing.playershootpacket.html#containertype" class="tsd-kind-icon">container<wbr>Type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="net_packets_outgoing.playershootpacket.html#propagate" class="tsd-kind-icon">propagate</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="net_packets_outgoing.playershootpacket.html#startingpos" class="tsd-kind-icon">starting<wbr>Pos</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="net_packets_outgoing.playershootpacket.html#time" class="tsd-kind-icon">time</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="net_packets_outgoing.playershootpacket.html#type" class="tsd-kind-icon">type</a></li>
@@ -106,6 +107,7 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="net_packets_outgoing.playershootpacket.html#read" class="tsd-kind-icon">read</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="net_packets_outgoing.playershootpacket.html#write" class="tsd-kind-icon">write</a></li>
 							</ul>
 						</section>
@@ -120,7 +122,7 @@
 					<div class="tsd-signature tsd-kind-icon">angle<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/a42c9a9/modules/net/src/packets/outgoing/player-shoot-packet.ts#L36">net/src/packets/outgoing/player-shoot-packet.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packets/outgoing/player-shoot-packet.ts#L37">net/src/packets/outgoing/player-shoot-packet.ts:37</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -135,7 +137,7 @@
 					<div class="tsd-signature tsd-kind-icon">bullet<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/a42c9a9/modules/net/src/packets/outgoing/player-shoot-packet.ts#L24">net/src/packets/outgoing/player-shoot-packet.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packets/outgoing/player-shoot-packet.ts#L25">net/src/packets/outgoing/player-shoot-packet.ts:25</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -150,7 +152,7 @@
 					<div class="tsd-signature tsd-kind-icon">container<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/a42c9a9/modules/net/src/packets/outgoing/player-shoot-packet.ts#L28">net/src/packets/outgoing/player-shoot-packet.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packets/outgoing/player-shoot-packet.ts#L29">net/src/packets/outgoing/player-shoot-packet.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -160,12 +162,23 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="propagate" class="tsd-anchor"></a>
+					<h3>propagate</h3>
+					<div class="tsd-signature tsd-kind-icon">propagate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
+					<aside class="tsd-sources">
+						<p>Implementation of <a href="../interfaces/net.packet.html">Packet</a>.<a href="../interfaces/net.packet.html#propagate">propagate</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packets/outgoing/player-shoot-packet.ts#L15">net/src/packets/outgoing/player-shoot-packet.ts:15</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="startingpos" class="tsd-anchor"></a>
 					<h3>starting<wbr>Pos</h3>
 					<div class="tsd-signature tsd-kind-icon">starting<wbr>Pos<span class="tsd-signature-symbol">:</span> <a href="net_data.worldposdata.html" class="tsd-signature-type">WorldPosData</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/a42c9a9/modules/net/src/packets/outgoing/player-shoot-packet.ts#L32">net/src/packets/outgoing/player-shoot-packet.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packets/outgoing/player-shoot-packet.ts#L33">net/src/packets/outgoing/player-shoot-packet.ts:33</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -180,7 +193,7 @@
 					<div class="tsd-signature tsd-kind-icon">time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/a42c9a9/modules/net/src/packets/outgoing/player-shoot-packet.ts#L20">net/src/packets/outgoing/player-shoot-packet.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packets/outgoing/player-shoot-packet.ts#L21">net/src/packets/outgoing/player-shoot-packet.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -194,15 +207,39 @@
 					<h3>type</h3>
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../enums/net.packettype.html" class="tsd-signature-type">PacketType</a><span class="tsd-signature-symbol"> =&nbsp;PacketType.PLAYERSHOOT</span></div>
 					<aside class="tsd-sources">
-						<p>Implementation of <a href="../interfaces/net.outgoingpacket.html">OutgoingPacket</a>.<a href="../interfaces/net.outgoingpacket.html#type">type</a></p>
+						<p>Implementation of <a href="../interfaces/net.packet.html">Packet</a>.<a href="../interfaces/net.packet.html#type">type</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/a42c9a9/modules/net/src/packets/outgoing/player-shoot-packet.ts#L14">net/src/packets/outgoing/player-shoot-packet.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packets/outgoing/player-shoot-packet.ts#L14">net/src/packets/outgoing/player-shoot-packet.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="read" class="tsd-anchor"></a>
+					<h3>read</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">read<span class="tsd-signature-symbol">(</span>buffer<span class="tsd-signature-symbol">: </span><a href="net.packetbuffer.html" class="tsd-signature-type">PacketBuffer</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/net.packet.html">Packet</a>.<a href="../interfaces/net.packet.html#read">read</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packets/outgoing/player-shoot-packet.ts#L48">net/src/packets/outgoing/player-shoot-packet.ts:48</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>buffer: <a href="net.packetbuffer.html" class="tsd-signature-type">PacketBuffer</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="write" class="tsd-anchor"></a>
 					<h3>write</h3>
@@ -212,9 +249,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/net.outgoingpacket.html">OutgoingPacket</a>.<a href="../interfaces/net.outgoingpacket.html#write">write</a></p>
+								<p>Implementation of <a href="../interfaces/net.packet.html">Packet</a>.<a href="../interfaces/net.packet.html#write">write</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/a42c9a9/modules/net/src/packets/outgoing/player-shoot-packet.ts#L39">net/src/packets/outgoing/player-shoot-packet.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packets/outgoing/player-shoot-packet.ts#L40">net/src/packets/outgoing/player-shoot-packet.ts:40</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -296,6 +333,9 @@
 								<a href="net_packets_outgoing.playershootpacket.html#containertype" class="tsd-kind-icon">container<wbr>Type</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="net_packets_outgoing.playershootpacket.html#propagate" class="tsd-kind-icon">propagate</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="net_packets_outgoing.playershootpacket.html#startingpos" class="tsd-kind-icon">starting<wbr>Pos</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
@@ -303,6 +343,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="net_packets_outgoing.playershootpacket.html#type" class="tsd-kind-icon">type</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="net_packets_outgoing.playershootpacket.html#read" class="tsd-kind-icon">read</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="net_packets_outgoing.playershootpacket.html#write" class="tsd-kind-icon">write</a>

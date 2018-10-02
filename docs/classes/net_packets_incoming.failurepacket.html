@@ -85,7 +85,7 @@
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/net.incomingpacket.html" class="tsd-signature-type">IncomingPacket</a></li>
+					<li><a href="../interfaces/net.packet.html" class="tsd-signature-type">Packet</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -105,6 +105,7 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="net_packets_incoming.failurepacket.html#read" class="tsd-kind-icon">read</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="net_packets_incoming.failurepacket.html#write" class="tsd-kind-icon">write</a></li>
 							</ul>
 						</section>
 					</div>
@@ -118,7 +119,7 @@
 					<div class="tsd-signature tsd-kind-icon">error<wbr>Description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/a42c9a9/modules/net/src/packets/incoming/failure-packet.ts#L26">net/src/packets/incoming/failure-packet.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packets/incoming/failure-packet.ts#L26">net/src/packets/incoming/failure-packet.ts:26</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -133,7 +134,7 @@
 					<div class="tsd-signature tsd-kind-icon">error<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">FailureCode</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/a42c9a9/modules/net/src/packets/incoming/failure-packet.ts#L22">net/src/packets/incoming/failure-packet.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packets/incoming/failure-packet.ts#L22">net/src/packets/incoming/failure-packet.ts:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -152,9 +153,9 @@
 					<h3>propagate</h3>
 					<div class="tsd-signature tsd-kind-icon">propagate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 					<aside class="tsd-sources">
-						<p>Implementation of <a href="../interfaces/net.incomingpacket.html">IncomingPacket</a>.<a href="../interfaces/net.incomingpacket.html#propagate">propagate</a></p>
+						<p>Implementation of <a href="../interfaces/net.packet.html">Packet</a>.<a href="../interfaces/net.packet.html#propagate">propagate</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/a42c9a9/modules/net/src/packets/incoming/failure-packet.ts#L15">net/src/packets/incoming/failure-packet.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packets/incoming/failure-packet.ts#L15">net/src/packets/incoming/failure-packet.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -163,9 +164,9 @@
 					<h3>type</h3>
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../enums/net.packettype.html" class="tsd-signature-type">PacketType</a><span class="tsd-signature-symbol"> =&nbsp;PacketType.FAILURE</span></div>
 					<aside class="tsd-sources">
-						<p>Implementation of <a href="../interfaces/net.incomingpacket.html">IncomingPacket</a>.<a href="../interfaces/net.incomingpacket.html#type">type</a></p>
+						<p>Implementation of <a href="../interfaces/net.packet.html">Packet</a>.<a href="../interfaces/net.packet.html#type">type</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/a42c9a9/modules/net/src/packets/incoming/failure-packet.ts#L14">net/src/packets/incoming/failure-packet.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packets/incoming/failure-packet.ts#L14">net/src/packets/incoming/failure-packet.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -181,9 +182,33 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/net.incomingpacket.html">IncomingPacket</a>.<a href="../interfaces/net.incomingpacket.html#read">read</a></p>
+								<p>Implementation of <a href="../interfaces/net.packet.html">Packet</a>.<a href="../interfaces/net.packet.html#read">read</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/a42c9a9/modules/net/src/packets/incoming/failure-packet.ts#L29">net/src/packets/incoming/failure-packet.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packets/incoming/failure-packet.ts#L29">net/src/packets/incoming/failure-packet.ts:29</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>buffer: <a href="net.packetbuffer.html" class="tsd-signature-type">PacketBuffer</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="write" class="tsd-anchor"></a>
+					<h3>write</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">write<span class="tsd-signature-symbol">(</span>buffer<span class="tsd-signature-symbol">: </span><a href="net.packetbuffer.html" class="tsd-signature-type">PacketBuffer</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/net.packet.html">Packet</a>.<a href="../interfaces/net.packet.html#write">write</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packets/incoming/failure-packet.ts#L34">net/src/packets/incoming/failure-packet.ts:34</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -269,6 +294,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="net_packets_incoming.failurepacket.html#read" class="tsd-kind-icon">read</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="net_packets_incoming.failurepacket.html#write" class="tsd-kind-icon">write</a>
 							</li>
 						</ul>
 					</li>
