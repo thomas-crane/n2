@@ -9,7 +9,8 @@ import {
   WorldPosData, AoeAckPacket,
   MovePacket, NewTickPacket, PingPacket,
   PongPacket, UpdatePacket, CreateSuccessPacket,
-  LoadPacket, CreatePacket, MapInfoPacket
+  LoadPacket, CreatePacket, MapInfoPacket,
+  RSA
 } from '@n2/net';
 import { Logger, LogLevel, Classes, PlayerData } from '@n2/common';
 import { StatusParser } from './parsers';
@@ -183,8 +184,8 @@ export class Client {
       const helloPacket: HelloPacket = new HelloPacket();
       helloPacket.buildVersion = gameState.buildVersion;
       helloPacket.gameId = gameState.gameId;
-      helloPacket.guid = this.account.guid;
-      helloPacket.password = this.account.password;
+      helloPacket.guid = RSA.encrypt(this.account.guid);
+      helloPacket.password = RSA.encrypt(this.account.password);
       helloPacket.keyTime = gameState.keyTime;
       helloPacket.key = gameState.key;
       helloPacket.gameNet = 'rotmg';
