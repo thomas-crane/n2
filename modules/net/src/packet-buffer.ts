@@ -217,8 +217,8 @@ export class PacketBuffer {
       return;
     }
     this.writeShort(value.length);
-    for (let i = 0; i < value.length; i++ , this.bufferIndex++) {
-      this.data[this.bufferIndex] = value[i];
+    for (const byte of value) {
+      this.data[this.bufferIndex++] = byte;
     }
   }
 

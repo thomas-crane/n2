@@ -1,7 +1,7 @@
 /**
  * @module core
  */
-import { Account, GameState } from './models';
+import { Account, GameState, isGameState } from './models';
 import { Socket } from 'net';
 import {
   PacketIO, HelloPacket, PacketType,
@@ -169,12 +169,7 @@ export class Client {
     if (typeof ip !== 'string') {
       throw new TypeError(`Parameter "ip" must be a string, not ${typeof ip}`);
     }
-    if (
-      !gameState
-      || typeof gameState.buildVersion !== 'string'
-      || typeof gameState.characterId !== 'number'
-      || typeof gameState.gameId !== 'number'
-    ) {
+    if (!isGameState(gameState)) {
       throw new TypeError(`Parameter "gameState" must be a GameState, not ${typeof gameState}`);
     }
     if (this._connected) {

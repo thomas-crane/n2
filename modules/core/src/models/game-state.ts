@@ -26,3 +26,10 @@ export interface GameState {
    */
   keyTime: number;
 }
+
+export function isGameState(gameState: any): gameState is GameState {
+  return gameState
+    && typeof gameState.buildVersion === 'string'
+    && typeof gameState.characterId === 'number'
+    && typeof gameState.gameId === 'number';
+}
