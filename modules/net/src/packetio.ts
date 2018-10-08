@@ -140,6 +140,7 @@ export class PacketIO extends EventEmitter {
     if (packet && typeof packet.type === 'string') {
       this._lastIncomingPacket = packet;
       this.emit(packet.type, packet);
+      this.emit('packet', packet);
     } else {
       throw new TypeError(`Parameter "packet" must be a Packet, not ${typeof packet}`);
     }
