@@ -8,6 +8,10 @@ import { AccountInfo } from './account-info';
  */
 export interface Account {
   /**
+   * A name for this account.
+   */
+  name?: string;
+  /**
    * The email of this account.
    */
   guid: string;

@@ -1,6 +1,6 @@
 {
   "name": "@n2/core",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "The core module for n2",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -19,7 +19,8 @@
     "tsai": "^2.1.0"
   },
   "dependencies": {
-    "@n2/common": "^0.1.0",
-    "@n2/net": "^0.2.0"
+    "@n2/common": "^0.1.1",
+    "@n2/net": "^0.3.0",
+    "socks": "^2.2.1"
   }
 }

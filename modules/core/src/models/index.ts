@@ -5,4 +5,5 @@ export * from './account';
 export * from './character';
 export * from './game-state';
 export * from './map';
+export * from './proxy';
 export * from './server';

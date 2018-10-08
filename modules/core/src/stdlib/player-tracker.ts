@@ -21,8 +21,8 @@ export class PlayerTrackerClient extends Client {
   players: PlayerData[];
   private emitter: EventEmitter;
 
-  constructor(account: Account, socket?: Socket) {
-    super(account, socket);
+  constructor(account: Account) {
+    super(account);
     this.emitter = new EventEmitter();
     this.io.on(PacketType.UPDATE, (update: UpdatePacket) => {
       for (const obj of update.newObjects) {
