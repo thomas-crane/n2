@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DeletePetMessage | n2</title>
+	<title>Proxy | n2</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/net_packets_incoming.html">net/packets/incoming</a>
+					<a href="../modules/core_models.html">core/models</a>
 				</li>
 				<li>
-					<a href="net_packets_incoming.deletepetmessage.html">DeletePetMessage</a>
+					<a href="core_models.proxy.html">Proxy</a>
 				</li>
 			</ul>
-			<h1>Class DeletePetMessage</h1>
+			<h1>Interface Proxy</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Received to notify the player that a pet has been deleted.</p>
+						<p>Configuration settings for a proxy.</p>
 					</div>
 				</div>
 			</section>
@@ -78,14 +78,8 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">DeletePetMessage</span>
+						<span class="target">Proxy</span>
 					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implements</h3>
-				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/net.packet.html" class="tsd-signature-type">Packet</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -95,16 +89,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="net_packets_incoming.deletepetmessage.html#petid" class="tsd-kind-icon">pet<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="net_packets_incoming.deletepetmessage.html#propagate" class="tsd-kind-icon">propagate</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="net_packets_incoming.deletepetmessage.html#type" class="tsd-kind-icon">type</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Methods</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="net_packets_incoming.deletepetmessage.html#read" class="tsd-kind-icon">read</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="net_packets_incoming.deletepetmessage.html#write" class="tsd-kind-icon">write</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_models.proxy.html#host" class="tsd-kind-icon">host</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_models.proxy.html#password" class="tsd-kind-icon">password</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_models.proxy.html#port" class="tsd-kind-icon">port</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_models.proxy.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="core_models.proxy.html#userid" class="tsd-kind-icon">user<wbr>Id</a></li>
 							</ul>
 						</section>
 					</div>
@@ -112,93 +101,80 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="petid" class="tsd-anchor"></a>
-					<h3>pet<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">pet<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="host" class="tsd-anchor"></a>
+					<h3>host</h3>
+					<div class="tsd-signature tsd-kind-icon">host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packets/incoming/pets/delete-pet-message.ts#L20">net/src/packets/incoming/pets/delete-pet-message.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/models/proxy.ts#L11">core/src/models/proxy.ts:11</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The id of the pet which has been deleted.</p>
+							<p>The host address of the proxy. Prefer using an IP over a hostname.</p>
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="propagate" class="tsd-anchor"></a>
-					<h3>propagate</h3>
-					<div class="tsd-signature tsd-kind-icon">propagate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="password" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> password</h3>
+					<div class="tsd-signature tsd-kind-icon">password<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Implementation of <a href="../interfaces/net.packet.html">Packet</a>.<a href="../interfaces/net.packet.html#propagate">propagate</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packets/incoming/pets/delete-pet-message.ts#L14">net/src/packets/incoming/pets/delete-pet-message.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/models/proxy.ts#L23">core/src/models/proxy.ts:23</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The password for the proxy, if one is required.</p>
+						</div>
+					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="port" class="tsd-anchor"></a>
+					<h3>port</h3>
+					<div class="tsd-signature tsd-kind-icon">port<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/models/proxy.ts#L15">core/src/models/proxy.ts:15</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The port of the proxy.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="type" class="tsd-anchor"></a>
 					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../enums/net.packettype.html" class="tsd-signature-type">PacketType</a><span class="tsd-signature-symbol"> =&nbsp;PacketType.DELETE_PET</span></div>
+					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">4</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">5</span></div>
 					<aside class="tsd-sources">
-						<p>Implementation of <a href="../interfaces/net.packet.html">Packet</a>.<a href="../interfaces/net.packet.html#type">type</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packets/incoming/pets/delete-pet-message.ts#L13">net/src/packets/incoming/pets/delete-pet-message.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/models/proxy.ts#L27">core/src/models/proxy.ts:27</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The type of proxy. Either <code>4</code> for SOCKSv4 and SOCKSv4a, or <code>5</code> for SOCKSv5.</p>
+						</div>
+					</div>
 				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="read" class="tsd-anchor"></a>
-					<h3>read</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">read<span class="tsd-signature-symbol">(</span>buffer<span class="tsd-signature-symbol">: </span><a href="net.packetbuffer.html" class="tsd-signature-type">PacketBuffer</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/net.packet.html">Packet</a>.<a href="../interfaces/net.packet.html#read">read</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packets/incoming/pets/delete-pet-message.ts#L23">net/src/packets/incoming/pets/delete-pet-message.ts:23</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>buffer: <a href="net.packetbuffer.html" class="tsd-signature-type">PacketBuffer</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="write" class="tsd-anchor"></a>
-					<h3>write</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">write<span class="tsd-signature-symbol">(</span>buffer<span class="tsd-signature-symbol">: </span><a href="net.packetbuffer.html" class="tsd-signature-type">PacketBuffer</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/net.packet.html">Packet</a>.<a href="../interfaces/net.packet.html#write">write</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packets/incoming/pets/delete-pet-message.ts#L27">net/src/packets/incoming/pets/delete-pet-message.ts:27</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>buffer: <a href="net.packetbuffer.html" class="tsd-signature-type">PacketBuffer</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="userid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> user<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">user<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/models/proxy.ts#L19">core/src/models/proxy.ts:19</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The username for the proxy, if one is required.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -220,7 +196,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/core.html">core</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/core_models.html">core/models</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -238,7 +214,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/net_data.html">net/data</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/net_packets_incoming.html">net/packets/incoming</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -254,30 +230,51 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_models.account.html" class="tsd-kind-icon">Account</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_models.accountinfo.html" class="tsd-kind-icon">Account<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_models.character.html" class="tsd-kind-icon">Character</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_models.gamestate.html" class="tsd-kind-icon">Game<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_models.mapinfo.html" class="tsd-kind-icon">Map<wbr>Info</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="net_packets_incoming.deletepetmessage.html" class="tsd-kind-icon">Delete<wbr>Pet<wbr>Message</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_models.proxy.html" class="tsd-kind-icon">Proxy</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="net_packets_incoming.deletepetmessage.html#petid" class="tsd-kind-icon">pet<wbr>Id</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core_models.proxy.html#host" class="tsd-kind-icon">host</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="net_packets_incoming.deletepetmessage.html#propagate" class="tsd-kind-icon">propagate</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core_models.proxy.html#password" class="tsd-kind-icon">password</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="net_packets_incoming.deletepetmessage.html#type" class="tsd-kind-icon">type</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core_models.proxy.html#port" class="tsd-kind-icon">port</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="net_packets_incoming.deletepetmessage.html#read" class="tsd-kind-icon">read</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core_models.proxy.html#type" class="tsd-kind-icon">type</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="net_packets_incoming.deletepetmessage.html#write" class="tsd-kind-icon">write</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="core_models.proxy.html#userid" class="tsd-kind-icon">user<wbr>Id</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="core_models.server.html" class="tsd-kind-icon">Server</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/core_models.html#isgamestate" class="tsd-kind-icon">is<wbr>Game<wbr>State</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

@@ -102,6 +102,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="core.client.html#_connected" class="tsd-kind-icon">_connected</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="core.client.html#_lastserver" class="tsd-kind-icon">_last<wbr>Server</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="core.client.html#_time" class="tsd-kind-icon">_time</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.client.html#account" class="tsd-kind-icon">account</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="core.client.html#eventhandlers" class="tsd-kind-icon">event<wbr>Handlers</a></li>
@@ -109,6 +110,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.client.html#map" class="tsd-kind-icon">map</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.client.html#objectid" class="tsd-kind-icon">object<wbr>Id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.client.html#position" class="tsd-kind-icon">position</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.client.html#proxy" class="tsd-kind-icon">proxy</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="core.client.html#stats" class="tsd-kind-icon">stats</a></li>
 							</ul>
 						</section>
@@ -116,15 +118,19 @@
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="core.client.html#connected" class="tsd-kind-icon">connected</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="core.client.html#lastserver" class="tsd-kind-icon">last<wbr>Server</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="core.client.html#time" class="tsd-kind-icon">time</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.client.html#attach" class="tsd-kind-icon">attach</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.client.html#connect" class="tsd-kind-icon">connect</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.client.html#destroy" class="tsd-kind-icon">destroy</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.client.html#detach" class="tsd-kind-icon">detach</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="core.client.html#disconnect" class="tsd-kind-icon">disconnect</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="core.client.html#getconnection" class="tsd-kind-icon">get<wbr>Connection</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="core.client.html#log" class="tsd-kind-icon">log</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="core.client.html#onclose" class="tsd-kind-icon">on<wbr>Close</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="core.client.html#onconnect" class="tsd-kind-icon">on<wbr>Connect</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="core.client.html#onerror" class="tsd-kind-icon">on<wbr>Error</a></li>
@@ -139,13 +145,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Client<span class="tsd-signature-symbol">(</span>account<span class="tsd-signature-symbol">: </span><a href="../interfaces/core_models.account.html" class="tsd-signature-type">Account</a>, socket<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Socket</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.client.html" class="tsd-signature-type">Client</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Client<span class="tsd-signature-symbol">(</span>account<span class="tsd-signature-symbol">: </span><a href="../interfaces/core_models.account.html" class="tsd-signature-type">Account</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="core.client.html" class="tsd-signature-type">Client</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/core/src/client.ts#L74">core/src/client.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L88">core/src/client.ts:88</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -163,9 +169,6 @@
 										</div>
 									</div>
 								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> socket: <span class="tsd-signature-type">Socket</span></h5>
-								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="core.client.html" class="tsd-signature-type">Client</a></h4>
 						</li>
@@ -180,7 +183,17 @@
 					<div class="tsd-signature tsd-kind-icon">_connected<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/core/src/client.ts#L71">core/src/client.ts:71</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L84">core/src/client.ts:84</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_lastserver" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _last<wbr>Server</h3>
+					<div class="tsd-signature tsd-kind-icon">_last<wbr>Server<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core_models.server.html" class="tsd-signature-type">Server</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L86">core/src/client.ts:86</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -190,7 +203,7 @@
 					<div class="tsd-signature tsd-kind-icon">_time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/core/src/client.ts#L72">core/src/client.ts:72</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L85">core/src/client.ts:85</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -200,7 +213,7 @@
 					<div class="tsd-signature tsd-kind-icon">account<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core_models.account.html" class="tsd-signature-type">Account</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/core/src/client.ts#L51">core/src/client.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L53">core/src/client.ts:53</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -215,7 +228,7 @@
 					<div class="tsd-signature tsd-kind-icon">event<wbr>Handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/core/src/client.ts#L74">core/src/client.ts:74</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L88">core/src/client.ts:88</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -225,7 +238,7 @@
 					<div class="tsd-signature tsd-kind-icon">io<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">PacketIO</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/core/src/client.ts#L62">core/src/client.ts:62</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L68">core/src/client.ts:68</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -240,7 +253,7 @@
 					<div class="tsd-signature tsd-kind-icon">map<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core_models.mapinfo.html" class="tsd-signature-type">MapInfo</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/core/src/client.ts#L45">core/src/client.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L47">core/src/client.ts:47</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -256,7 +269,7 @@
 					<div class="tsd-signature tsd-kind-icon">object<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/core/src/client.ts#L30">core/src/client.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L32">core/src/client.ts:32</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -272,7 +285,7 @@
 					<div class="tsd-signature tsd-kind-icon">position<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">WorldPosData</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/core/src/client.ts#L35">core/src/client.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L37">core/src/client.ts:37</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -283,12 +296,27 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="proxy" class="tsd-anchor"></a>
+					<h3>proxy</h3>
+					<div class="tsd-signature tsd-kind-icon">proxy<span class="tsd-signature-symbol">:</span> <a href="../interfaces/core_models.proxy.html" class="tsd-signature-type">Proxy</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L57">core/src/client.ts:57</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A proxy to route game traffic through.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="stats" class="tsd-anchor"></a>
 					<h3>stats</h3>
 					<div class="tsd-signature tsd-kind-icon">stats<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">PlayerData</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/core/src/client.ts#L40">core/src/client.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L42">core/src/client.ts:42</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -311,7 +339,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/core/src/client.ts#L56">core/src/client.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L62">core/src/client.ts:62</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -326,6 +354,28 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="lastserver" class="tsd-anchor"></a>
+					<h3>last<wbr>Server</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> lastServer<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/core_models.server.html" class="tsd-signature-type">Server</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L80">core/src/client.ts:80</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The last server that this client was connected to.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/core_models.server.html" class="tsd-signature-type">Server</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="time" class="tsd-anchor"></a>
 					<h3>time</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
@@ -335,7 +385,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/core/src/client.ts#L67">core/src/client.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L73">core/src/client.ts:73</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -353,16 +403,47 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="connect" class="tsd-anchor"></a>
-					<h3>connect</h3>
+					<a name="attach" class="tsd-anchor"></a>
+					<h3>attach</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">connect<span class="tsd-signature-symbol">(</span>ip<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, gameState<span class="tsd-signature-symbol">: </span><a href="../interfaces/core_models.gamestate.html" class="tsd-signature-type">GameState</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">attach<span class="tsd-signature-symbol">(</span>socket<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Socket</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/core/src/client.ts#L168">core/src/client.ts:168</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L179">core/src/client.ts:179</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Attaches the client to the <code>Socket</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>socket: <span class="tsd-signature-type">Socket</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The socket to attach to.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="connect" class="tsd-anchor"></a>
+					<h3>connect</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">connect<span class="tsd-signature-symbol">(</span>server<span class="tsd-signature-symbol">: </span><a href="../interfaces/core_models.server.html" class="tsd-signature-type">Server</a>, gameState<span class="tsd-signature-symbol">: </span><a href="../interfaces/core_models.gamestate.html" class="tsd-signature-type">GameState</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L210">core/src/client.ts:210</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -373,10 +454,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>ip: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The IP to connect to.</p>
-									</div>
+									<h5>server: <a href="../interfaces/core_models.server.html" class="tsd-signature-type">Server</a></h5>
 								</li>
 								<li>
 									<h5>gameState: <a href="../interfaces/core_models.gamestate.html" class="tsd-signature-type">GameState</a></h5>
@@ -390,21 +468,21 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="destroy" class="tsd-anchor"></a>
-					<h3>destroy</h3>
+					<a name="detach" class="tsd-anchor"></a>
+					<h3>detach</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">destroy<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">detach<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/core/src/client.ts#L230">core/src/client.ts:230</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L195">core/src/client.ts:195</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Destroys the resources held by this client.</p>
+									<p>Detaches this client from its socket.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -421,7 +499,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/core/src/client.ts#L216">core/src/client.ts:216</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L258">core/src/client.ts:258</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -430,6 +508,55 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="getconnection" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Connection</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Connection<span class="tsd-signature-symbol">(</span>ip<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Socket</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L269">core/src/client.ts:269</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>ip: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Socket</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="log" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> log</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">log<span class="tsd-signature-symbol">(</span>msg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, level<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">LogLevel</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L325">core/src/client.ts:325</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>msg: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> level: <span class="tsd-signature-type">LogLevel</span><span class="tsd-signature-symbol"> =&nbsp;LogLevel.Message</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -443,7 +570,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/core/src/client.ts#L244">core/src/client.ts:244</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L314">core/src/client.ts:314</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -460,7 +587,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/core/src/client.ts#L239">core/src/client.ts:239</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L298">core/src/client.ts:298</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -477,7 +604,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/core/src/client.ts#L251">core/src/client.ts:251</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/core/src/client.ts#L321">core/src/client.ts:321</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -556,6 +683,9 @@
 								<a href="core.client.html#_connected" class="tsd-kind-icon">_connected</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="core.client.html#_lastserver" class="tsd-kind-icon">_last<wbr>Server</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="core.client.html#_time" class="tsd-kind-icon">_time</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
@@ -577,22 +707,37 @@
 								<a href="core.client.html#position" class="tsd-kind-icon">position</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="core.client.html#proxy" class="tsd-kind-icon">proxy</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="core.client.html#stats" class="tsd-kind-icon">stats</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="core.client.html#connected" class="tsd-kind-icon">connected</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="core.client.html#lastserver" class="tsd-kind-icon">last<wbr>Server</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="core.client.html#time" class="tsd-kind-icon">time</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="core.client.html#attach" class="tsd-kind-icon">attach</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="core.client.html#connect" class="tsd-kind-icon">connect</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="core.client.html#destroy" class="tsd-kind-icon">destroy</a>
+								<a href="core.client.html#detach" class="tsd-kind-icon">detach</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="core.client.html#disconnect" class="tsd-kind-icon">disconnect</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="core.client.html#getconnection" class="tsd-kind-icon">get<wbr>Connection</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="core.client.html#log" class="tsd-kind-icon">log</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="core.client.html#onclose" class="tsd-kind-icon">on<wbr>Close</a>

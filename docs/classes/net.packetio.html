@@ -122,9 +122,10 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="net.packetio.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="net.packetio.html#attach" class="tsd-kind-icon">attach</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="net.packetio.html#checkbuffer" class="tsd-kind-icon">check<wbr>Buffer</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="net.packetio.html#constructpacket" class="tsd-kind-icon">construct<wbr>Packet</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="net.packetio.html#destroy" class="tsd-kind-icon">destroy</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="net.packetio.html#detach" class="tsd-kind-icon">detach</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="net.packetio.html#emit" class="tsd-kind-icon">emit</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="net.packetio.html#emiterror" class="tsd-kind-icon">emit<wbr>Error</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="net.packetio.html#emitpacket" class="tsd-kind-icon">emit<wbr>Packet</a></li>
@@ -134,7 +135,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="net.packetio.html#listeners" class="tsd-kind-icon">listeners</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="net.packetio.html#off" class="tsd-kind-icon">off</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="net.packetio.html#on" class="tsd-kind-icon">on</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="net.packetio.html#onclose" class="tsd-kind-icon">on<wbr>Close</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="net.packetio.html#onconnect" class="tsd-kind-icon">on<wbr>Connect</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="net.packetio.html#ondata" class="tsd-kind-icon">on<wbr>Data</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="net.packetio.html#once" class="tsd-kind-icon">once</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="net.packetio.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a></li>
@@ -157,13 +158,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>PacketIO<span class="tsd-signature-symbol">(</span>socket<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Socket</span>, rc4Config<span class="tsd-signature-symbol">?: </span><a href="../interfaces/net.rc4config.html" class="tsd-signature-type">RC4Config</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="net.packetio.html" class="tsd-signature-type">PacketIO</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>PacketIO<span class="tsd-signature-symbol">(</span>socket<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Socket</span>, rc4Config<span class="tsd-signature-symbol">?: </span><a href="../interfaces/net.rc4config.html" class="tsd-signature-type">RC4Config</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="net.packetio.html" class="tsd-signature-type">PacketIO</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packetio.ts#L54">net/src/packetio.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L59">net/src/packetio.ts:59</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -174,7 +175,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>socket: <span class="tsd-signature-type">Socket</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> socket: <span class="tsd-signature-type">Socket</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>The socket to implement the protocol on top of.</p>
@@ -182,7 +183,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> rc4Config: <a href="../interfaces/net.rc4config.html" class="tsd-signature-type">RC4Config</a><span class="tsd-signature-symbol"> =&nbsp;{incomingKey: INCOMING_KEY,outgoingKey: OUTGOING_KEY}</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> rc4Config: <a href="../interfaces/net.rc4config.html" class="tsd-signature-type">RC4Config</a><span class="tsd-signature-symbol"> =&nbsp;DEFAULT_RC4</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="net.packetio.html" class="tsd-signature-type">PacketIO</a></h4>
@@ -198,7 +199,7 @@
 					<div class="tsd-signature tsd-kind-icon">_last<wbr>Incoming<wbr>Packet<span class="tsd-signature-symbol">:</span> <a href="../interfaces/net.packet.html" class="tsd-signature-type">Packet</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packetio.ts#L53">net/src/packetio.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L58">net/src/packetio.ts:58</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -208,7 +209,7 @@
 					<div class="tsd-signature tsd-kind-icon">_last<wbr>Outgoing<wbr>Packet<span class="tsd-signature-symbol">:</span> <a href="../interfaces/net.packet.html" class="tsd-signature-type">Packet</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packetio.ts#L54">net/src/packetio.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L59">net/src/packetio.ts:59</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -218,7 +219,7 @@
 					<div class="tsd-signature tsd-kind-icon">event<wbr>Handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packetio.ts#L51">net/src/packetio.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L56">net/src/packetio.ts:56</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -228,7 +229,7 @@
 					<div class="tsd-signature tsd-kind-icon">outgoing<wbr>Buffer<span class="tsd-signature-symbol">:</span> <a href="net.packetbuffer.html" class="tsd-signature-type">PacketBuffer</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packetio.ts#L50">net/src/packetio.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L55">net/src/packetio.ts:55</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -238,7 +239,7 @@
 					<div class="tsd-signature tsd-kind-icon">packet<wbr>Buffer<span class="tsd-signature-symbol">:</span> <a href="net.packetbuffer.html" class="tsd-signature-type">PacketBuffer</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packetio.ts#L49">net/src/packetio.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L54">net/src/packetio.ts:54</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -248,7 +249,7 @@
 					<div class="tsd-signature tsd-kind-icon">receiveRC4<span class="tsd-signature-symbol">:</span> <a href="net_crypto.rc4.html" class="tsd-signature-type">RC4</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packetio.ts#L47">net/src/packetio.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L52">net/src/packetio.ts:52</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -258,7 +259,7 @@
 					<div class="tsd-signature tsd-kind-icon">sendRC4<span class="tsd-signature-symbol">:</span> <a href="net_crypto.rc4.html" class="tsd-signature-type">RC4</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packetio.ts#L46">net/src/packetio.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L51">net/src/packetio.ts:51</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -268,7 +269,7 @@
 					<div class="tsd-signature tsd-kind-icon">socket<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Socket</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packetio.ts#L30">net/src/packetio.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L35">net/src/packetio.ts:35</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -301,7 +302,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packetio.ts#L35">net/src/packetio.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L40">net/src/packetio.ts:40</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -323,7 +324,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packetio.ts#L42">net/src/packetio.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L47">net/src/packetio.ts:47</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -384,6 +385,37 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="attach" class="tsd-anchor"></a>
+					<h3>attach</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">attach<span class="tsd-signature-symbol">(</span>socket<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Socket</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L87">net/src/packetio.ts:87</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Attaches this Packet IO to the <code>socket</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>socket: <span class="tsd-signature-type">Socket</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The socket to attach to.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a name="checkbuffer" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> check<wbr>Buffer</h3>
@@ -394,7 +426,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packetio.ts#L199">net/src/packetio.ts:199</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L209">net/src/packetio.ts:209</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -411,7 +443,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packetio.ts#L167">net/src/packetio.ts:167</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L177">net/src/packetio.ts:177</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/net.packet.html" class="tsd-signature-type">Packet</a></h4>
@@ -419,22 +451,21 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="destroy" class="tsd-anchor"></a>
-					<h3>destroy</h3>
+					<a name="detach" class="tsd-anchor"></a>
+					<h3>detach</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">destroy<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">detach<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packetio.ts#L86">net/src/packetio.ts:86</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L103">net/src/packetio.ts:103</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Removes all event listeners and destroys any resources held by the PacketIO.
-									This should only be used when the PacketIO is no longer needed.</p>
+									<p>Detaches this Packet IO from its <code>Socket</code>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -479,7 +510,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packetio.ts#L218">net/src/packetio.ts:218</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L228">net/src/packetio.ts:228</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -502,7 +533,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packetio.ts#L139">net/src/packetio.ts:139</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L148">net/src/packetio.ts:148</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -705,16 +736,16 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="onclose" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> on<wbr>Close</h3>
+					<a name="onconnect" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> on<wbr>Connect</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">on<wbr>Close<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Connect<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packetio.ts#L148">net/src/packetio.ts:148</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L158">net/src/packetio.ts:158</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -731,7 +762,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packetio.ts#L154">net/src/packetio.ts:154</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L164">net/src/packetio.ts:164</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -988,7 +1019,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packetio.ts#L213">net/src/packetio.ts:213</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L223">net/src/packetio.ts:223</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1005,7 +1036,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/89c3664/modules/net/src/packetio.ts#L107">net/src/packetio.ts:107</a></li>
+									<li>Defined in <a href="https://github.com/thomas-crane/n2/blob/7a26d2d/modules/net/src/packetio.ts#L116">net/src/packetio.ts:116</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1192,6 +1223,9 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
 								<a href="net.packetio.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="net.packetio.html#attach" class="tsd-kind-icon">attach</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="net.packetio.html#checkbuffer" class="tsd-kind-icon">check<wbr>Buffer</a>
 							</li>
@@ -1199,7 +1233,7 @@
 								<a href="net.packetio.html#constructpacket" class="tsd-kind-icon">construct<wbr>Packet</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="net.packetio.html#destroy" class="tsd-kind-icon">destroy</a>
+								<a href="net.packetio.html#detach" class="tsd-kind-icon">detach</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
 								<a href="net.packetio.html#emit" class="tsd-kind-icon">emit</a>
@@ -1229,7 +1263,7 @@
 								<a href="net.packetio.html#on" class="tsd-kind-icon">on</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="net.packetio.html#onclose" class="tsd-kind-icon">on<wbr>Close</a>
+								<a href="net.packetio.html#onconnect" class="tsd-kind-icon">on<wbr>Connect</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="net.packetio.html#ondata" class="tsd-kind-icon">on<wbr>Data</a>
@@ -1285,6 +1319,9 @@
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="../modules/net.html#default_size" class="tsd-kind-icon">DEFAULT_<wbr>SIZE</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/net.html#default_rc4" class="tsd-kind-icon">DEFAULT_<wbr>RC4</a>
 					</li>
 				</ul>
 			</nav>

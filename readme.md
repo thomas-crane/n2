@@ -2,6 +2,7 @@
 
 A collection of modules for building clientless applications for Realm of the Mad God.
 
+[![CodeFactor](https://www.codefactor.io/repository/github/thomas-crane/n2/badge/master)](https://www.codefactor.io/repository/github/thomas-crane/n2/overview/master)
 [![Build Status](https://travis-ci.org/thomas-crane/n2.svg?branch=master)](https://travis-ci.org/thomas-crane/n2)
 
 ## Contents
