@@ -43,6 +43,10 @@ export class TextPacket implements Packet {
    * > Unknown.
    */
   cleanText: string;
+  /**
+   * Whether or not the sender of the message is a supporter.
+   */
+  isSupporter: boolean;
   //#endregion
 
   read(buffer: PacketBuffer): void {
@@ -53,6 +57,7 @@ export class TextPacket implements Packet {
     this.recipient = buffer.readString();
     this.text = buffer.readString();
     this.cleanText = buffer.readString();
+    this.isSupporter = buffer.readBoolean();
   }
 
   write(buffer: PacketBuffer): void {
@@ -62,5 +67,6 @@ export class TextPacket implements Packet {
     buffer.writeUnsignedByte(this.bubbleTime);
     buffer.writeString(this.text);
     buffer.writeString(this.cleanText);
+    buffer.writeBoolean(this.isSupporter);
   }
 }

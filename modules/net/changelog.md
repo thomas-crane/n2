@@ -2,6 +2,12 @@
 
 This document outlines all notable changes to this project.
 
+## [0.3.0] - 2018-10-08
+### Added
++ The method `attach(socket: Socket)` to the Packet IO class.
++ The method `detach()` to the Packet IO class.
++ A new property `isSupporter` to the `TextPacket`.
+
 ## [0.2.1] - 2018-10-08
 ### Added
 + A new event `packet` which is emitted for any packet received. Events for specific types are still emitted, and will be emitted before the `packet` event is emitted.

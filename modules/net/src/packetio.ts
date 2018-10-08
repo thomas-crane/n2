@@ -19,6 +19,11 @@ export interface RC4Config {
   outgoingKey: string;
 }
 
+const DEFAULT_RC4: RC4Config = {
+  incomingKey: INCOMING_KEY,
+  outgoingKey: OUTGOING_KEY
+};
+
 /**
  * A utility class which implements the RotMG messaging protocol on top of a `Socket`.
  */
@@ -27,7 +32,7 @@ export class PacketIO extends EventEmitter {
   /**
    * The socket this packet interface is attached to.
    */
-  readonly socket: Socket;
+  socket: Socket;
 
   /**
    * The last packet which was received.
@@ -58,46 +63,50 @@ export class PacketIO extends EventEmitter {
    * Creates a new `PacketIO` on top of the given `socket`.
    * @param socket The socket to implement the protocol on top of.
    */
-  constructor(socket: Socket, rc4Config: RC4Config = {
-    incomingKey: INCOMING_KEY,
-    outgoingKey: OUTGOING_KEY
-  }) {
+  constructor(socket?: Socket, rc4Config: RC4Config = DEFAULT_RC4) {
     super();
     this.packetBuffer = new PacketBuffer(5);
     this.outgoingBuffer = new PacketBuffer(2048);
-    this.socket = socket;
     this.sendRC4 = new RC4(Buffer.from(rc4Config.outgoingKey, 'hex'));
     this.receiveRC4 = new RC4(Buffer.from(rc4Config.incomingKey, 'hex'));
 
     this.eventHandlers = new Map([
       ['data', this.onData.bind(this)],
-      ['close', this.onClose.bind(this)]
+      ['connect', this.onConnect.bind(this)]
     ]);
 
+    if (socket) {
+      this.attach(socket);
+    }
+  }
+
+  /**
+   * Attaches this Packet IO to the `socket`.
+   * @param socket The socket to attach to.
+   */
+  attach(socket: Socket): void {
+    if (!(socket instanceof Socket)) {
+      throw new TypeError(`Parameter "socket" should be a Socket, not ${typeof socket}`);
+    }
+    if (this.socket) {
+      this.detach();
+    }
+    this.socket = socket;
     for (const kvp of this.eventHandlers) {
       this.socket.on(kvp[0], kvp[1]);
     }
   }
 
   /**
-   * Removes all event listeners and destroys any resources held by the PacketIO.
-   * This should only be used when the PacketIO is no longer needed.
+   * Detaches this Packet IO from its `Socket`.
    */
-  destroy(): void {
+  detach(): void {
     for (const kvp of this.eventHandlers) {
       this.socket.removeListener(kvp[0], kvp[1]);
     }
-    this.receiveRC4 = null;
-    this.sendRC4 = null;
-    this.packetBuffer = null;
-    this.eventHandlers = null;
-
-    for (const type in PacketType) {
-      if (PacketType.hasOwnProperty(type)) {
-        this.removeAllListeners(type);
-      }
-    }
-    this.removeAllListeners('error');
+    this.socket = undefined;
+    this._lastIncomingPacket = undefined;
+    this._lastOutgoingPacket = undefined;
   }
 
   /**
@@ -105,7 +114,7 @@ export class PacketIO extends EventEmitter {
    * @param packet The packet to send.
    */
   send(packet: Packet): void {
-    if (this.socket.destroyed) {
+    if (!this.socket || this.socket.destroyed) {
       return;
     }
     const type = Mapper.reverseMap.get(packet.type);
@@ -146,7 +155,7 @@ export class PacketIO extends EventEmitter {
     }
   }
 
-  private onClose(): void {
+  private onConnect(): void {
     this.resetBuffer();
     this.sendRC4.reset();
     this.receiveRC4.reset();

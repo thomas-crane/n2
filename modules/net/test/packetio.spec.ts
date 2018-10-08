@@ -18,23 +18,48 @@ describe('PacketIO', () => {
     expect((packetIO as any).sendRC4.key.toString('hex')).to.equal('d3e4f5', 'Incorrect default outgoing key.');
     expect((packetIO as any).receiveRC4.key.toString('hex')).to.equal('a0b1c2', 'Incorrect default outgoing key.');
   });
-  describe('#destroy()', () => {
+  describe('#attach()', () => {
+    it('should throw a TypeError for invalid inputs.', () => {
+      const packetIO = new PacketIO();
+      expect(() => packetIO.attach(123 as any)).to.throw(TypeError);
+      expect(() => packetIO.attach('Hello, World!' as any)).to.throw(TypeError);
+      expect(() => packetIO.attach(null)).to.throw(TypeError);
+    });
+
+    it('should attach event listeners to the socket.', () => {
+      const socket = new Socket();
+      const packetIO = new PacketIO();
+      packetIO.attach(socket);
+      expect(socket.listenerCount('connect')).to.equal(1, 'Incorrect listener count for connect event.');
+      expect(socket.listenerCount('data')).to.equal(1, 'Incorrect listener count for close event.');
+    });
+    it('#should detach first if there is a socket already attached.', () => {
+      const socketA = new Socket();
+      const socketB = new Socket();
+      const packetIO = new PacketIO();
+      packetIO.attach(socketA);
+      packetIO.attach(socketB);
+      expect(socketA.listenerCount('connect')).to.equal(0, 'Incorrect listener count for connect event.');
+      expect(socketA.listenerCount('data')).to.equal(0, 'Incorrect listener count for close event.');
+    });
+  });
+  describe('#detach()', () => {
     it('should remove the event listeners from the socket.', () => {
       const socket = new Socket();
       const packetIO = new PacketIO(socket);
       socket.on('data', () => null);
       socket.on('close', () => null);
-      packetIO.destroy();
+      packetIO.detach();
       expect(socket.listenerCount('data')).to.equal(1, 'Incorrect listener count for data event.');
       expect(socket.listenerCount('close')).to.equal(1, 'Incorrect listener count for close event.');
     });
-    it('should remove any packet event listeners.', () => {
+    it('should not remove any packet event listeners.', () => {
       const packetIO = new PacketIO(new Socket());
       packetIO.on(PacketType.LOAD, () => null);
       packetIO.on(PacketType.IMMINENT_ARENA_WAVE, () => null);
-      packetIO.destroy();
-      expect(packetIO.listenerCount(PacketType.LOAD)).to.equal(0, 'Packet listener not removed.');
-      expect(packetIO.listenerCount(PacketType.IMMINENT_ARENA_WAVE)).to.equal(0, 'Packet listener not removed.');
+      packetIO.detach();
+      expect(packetIO.listenerCount(PacketType.LOAD)).to.equal(1, 'Packet listener not removed.');
+      expect(packetIO.listenerCount(PacketType.IMMINENT_ARENA_WAVE)).to.equal(1, 'Packet listener not removed.');
     });
   });
   describe('#send()', () => {
