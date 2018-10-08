@@ -14,9 +14,9 @@ describe('HttpClient', () => {
       mockServer.destroy(done);
     });
     it('should throw a TypeError for invalid inputs.', () => {
-      expect(() => HttpClient.get(123 as any)).to.throw(TypeError);
-      expect(() => HttpClient.get(['hello', 'world'] as any)).to.throw(TypeError);
-      expect(() => HttpClient.get(null)).to.throw(TypeError);
+      return HttpClient.get(123 as any).catch((error) => {
+        expect(error).instanceof(TypeError);
+      });
     });
     it('should return a buffer if no write stream is passed.', () => {
       return HttpClient.get('http://localhost').then((buffer) => {
@@ -59,9 +59,9 @@ describe('HttpClient', () => {
       mockServer.destroy(done);
     });
     it('should throw a TypeError for invalid inputs.', () => {
-      expect(() => HttpClient.post(123 as any)).to.throw(TypeError);
-      expect(() => HttpClient.post(['hello', 'world'] as any)).to.throw(TypeError);
-      expect(() => HttpClient.post(null)).to.throw(TypeError);
+      return HttpClient.post(123 as any).catch((error) => {
+        expect(error).instanceof(TypeError);
+      });
     });
     it('should return a buffer if no write stream is passed.', () => {
       return HttpClient.post('http://localhost', { test: 'param' }).then((buffer) => {

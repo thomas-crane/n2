@@ -7,7 +7,8 @@ import * as zlib from 'zlib';
 import { Http } from './internal/http';
 import { Https } from './internal/https';
 import { IncomingMessage } from 'http';
-import { Writable } from 'stream';
+import { Writable, Readable } from 'stream';
+import { RequestOptions } from './internal/request-options';
 
 /**
  * The HTTP headers to include in each request.
@@ -31,47 +32,27 @@ export class HttpClient {
    * @param options The options to use while making the request.
    */
   static get(path: string, options: RequestOptions = { query: {} }): Promise<Buffer> {
-    const endpoint = url.parse(path);
-    if (!/https?:/.test(endpoint.protocol)) {
-      return Promise.reject(new Error(`Unsupported protocol: "${endpoint.protocol}"`));
+    if (typeof path !== 'string') {
+      return Promise.reject(new TypeError(`Parameter "path" should be a string, not ${typeof path}`));
     }
     let queryString = qs.stringify(options.query);
     if (queryString) {
       queryString = `?${queryString}`;
     }
-    if (endpoint.protocol === 'http:') {
-      return Http.get(endpoint.hostname, endpoint.path + queryString, options.stream);
-    } else {
-      return Https.get(endpoint.hostname, endpoint.path + queryString, options.stream);
-    }
-  }
 
-  /**
-   * Unzips a gzipped HTTP response.
-   * @param zipped The gzipped response to unzip.
-   */
-  static unzip(zipped: IncomingMessage, stream?: Writable): Promise<Buffer> {
-    return new Promise((resolve, reject) => {
-      const unzip = zlib.createGunzip();
-      zipped.pipe(unzip);
-      const data: Buffer[] = [];
-      unzip.on('data', (chunk) => {
-        data.push(chunk as Buffer);
-      });
-      unzip.once('end', () => {
-        unzip.removeAllListeners('data');
-        unzip.removeAllListeners('error');
-        if (stream !== undefined) {
-          stream.end(Buffer.concat(data), resolve);
-        } else {
-          resolve(Buffer.concat(data));
-        }
-      });
-      unzip.once('error', (error) => {
-        unzip.removeAllListeners('data');
-        unzip.removeAllListeners('end');
-        reject(error);
-      });
+    const endpoint = url.parse(path + queryString);
+    let incomingMsg: Promise<IncomingMessage>;
+    switch (endpoint.protocol) {
+      case 'http:':
+        incomingMsg = Http.get(endpoint);
+        break;
+      case 'https:':
+        incomingMsg = Https.get(endpoint);
+        break;
+      default: return Promise.reject(new Error(`Unsupported protocol "${endpoint.protocol}"`));
+    }
+    return incomingMsg.then((msg) => {
+      return this.handleResponse(msg, options.stream);
     });
   }
 
@@ -81,19 +62,47 @@ export class HttpClient {
    * @param params The POST parameters to include.
    */
   static post(path: string, params?: { [id: string]: any }, stream?: Writable): Promise<Buffer> {
+    if (typeof path !== 'string') {
+      return Promise.reject(new TypeError(`Parameter "path" should be a string, not ${typeof path}`));
+    }
     const endpoint = url.parse(path);
-    if (!/https?:/.test(endpoint.protocol)) {
-      return Promise.reject(new Error(`Unsupported protocol: "${endpoint.protocol}"`));
-    }
-    if (endpoint.protocol === 'http:') {
-      return Http.post(endpoint, params, stream);
-    } else {
-      return Https.post(endpoint, params, stream);
-    }
-  }
-}
+    const postData = qs.stringify(params);
 
-export interface RequestOptions {
-  query?: { [id: string]: any };
-  stream?: Writable;
+    let incomingMsg: Promise<IncomingMessage>;
+    switch (endpoint.protocol) {
+      case 'http:':
+        incomingMsg = Http.post(endpoint, postData);
+        break;
+      case 'https:':
+        incomingMsg = Https.post(endpoint, postData);
+        break;
+      default: return Promise.reject(new Error(`Unsupported protocol "${endpoint.protocol}"`));
+    }
+    return incomingMsg.then((msg) => {
+      return this.handleResponse(msg, stream);
+    });
+  }
+
+  private static handleResponse(msg: IncomingMessage, writeStream?: Writable): Promise<Buffer> {
+    return new Promise((resolve: (buffer: Buffer) => void, reject) => {
+      let stream: Readable = msg;
+      if (msg.headers['content-encoding'] === 'gzip') {
+        const gunzip = zlib.createGunzip();
+        stream = msg.pipe(gunzip);
+      }
+      if (writeStream) {
+        stream.pipe(writeStream).once('close', resolve).once('error', reject);
+      } else {
+        let data: any = [];
+        stream.on('data', (chunk) => {
+          data.push(chunk);
+        });
+        stream.once('end', () => {
+          data = Buffer.concat(data);
+          resolve(data);
+        });
+        stream.once('error', reject);
+      }
+    });
+  }
 }
