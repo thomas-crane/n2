@@ -2,6 +2,10 @@
 
 This document outlines all notable changes to this project.
 
+## [0.1.2] - 2018-10-09
+### Changed
++ Update package lock.
+
 ## [0.1.1] - 2018-10-08
 ### Changed
 + Refactored http code to reduce duplication.
