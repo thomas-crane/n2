@@ -2,6 +2,10 @@
 
 This document outlines all notable changes to this project.
 
+## [0.2.1] - 2018-10-09
+### Changed
++ Bumped dependency version.
+
 ## [0.2.0] - 2018-10-02
 ### Added
 + A dependency on the `socks` npm module.
