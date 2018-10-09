@@ -1,6 +1,6 @@
 {
   "name": "@n2/updater",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "The updater module for n2",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -16,7 +16,7 @@
     "@types/node": "^10.9.4"
   },
   "dependencies": {
-    "@n2/common": "^0.1.0",
-    "@n2/net": "^0.2.0"
+    "@n2/common": "^0.1.2",
+    "@n2/net": "^0.3.1"
   }
 }
