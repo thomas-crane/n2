@@ -2,6 +2,10 @@
 
 This document outlines all notable changes to this project.
 
+## [0.3.1] - 2018-10-09
+### Changed
++ Bumped dependency version.
+
 ## [0.3.0] - 2018-10-08
 ### Added
 + The method `attach(socket: Socket)` to the Packet IO class.
